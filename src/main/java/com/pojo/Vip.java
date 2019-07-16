@@ -1,4 +1,4 @@
-package com.com.pojo;
+package com.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 @TableName("vip_list")
-public class uesr implements Serializable {
+public class Vip implements Serializable {
     @TableId(value="vip_id",type = IdType.AUTO)
     private int vip_id;  //会员号
 

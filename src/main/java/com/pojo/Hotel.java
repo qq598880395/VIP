@@ -1,4 +1,4 @@
-package com.com.pojo;
+package com.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 @TableName("hotel")
-public class hotel  implements Serializable {
+public class Hotel  implements Serializable {
     @TableId(value = "hotel_id" ,type = IdType.AUTO)
     private int hotel_id;//酒店ID
     private String hotel_area;//酒店地区

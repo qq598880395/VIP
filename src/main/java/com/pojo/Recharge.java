@@ -1,4 +1,4 @@
-package com.com.pojo;
+package com.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import javax.persistence.Table;
 import java.io.Serializable;
 @TableName("recharge")
-public class recharge implements Serializable {
+public class Recharge implements Serializable {
     @TableId(value = "rc_id",type = IdType.AUTO)
     private int rc_id;//充值id
     private int hotel_id;//酒店id

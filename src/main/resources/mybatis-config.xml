@@ -20,7 +20,7 @@
 
 	<!-- 映射文件 -->
 	<mappers>
-	    <mapper resource="com/sunjob/mapper/studentMapper.xml"/>
+	    <mapper resource="com/mapper/vipMapper.xml"/>
 	</mappers>
 	
 </configuration>
