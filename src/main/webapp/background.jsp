@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>沃斯会员后台管理系统 - wools</title>
+    <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="js/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -19,8 +19,6 @@
         <div class="layui-logo">沃斯会员管理后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">用户统计</a></li>
-            <li class="layui-nav-item"><a href="">充值活动</a></li>
             <li class="layui-nav-item"><a href=""></a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
@@ -51,31 +49,30 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">会员统计</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;">人数统计</a></dd>
+                        <dd><a href="javascript:;">充值金额统计</a></dd>
+                        <dd><a href="javascript:;"></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a href="javascript:;">优惠活动</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;">活动一</a></dd>
+                        <dd><a href="javascript:;">活动二</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <li class="layui-nav-item"><a href="">联系我们</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="layui-body">
-        <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+    <div class="layui-body" >
+
+        <div id="main" style="width: 600px;height:450px;"style="float: left;"></div>
+        <div id="main2" style="width: 600px;height:450px;"style="float: right;"></div>
     </div>
 
     <div class="layui-footer">
@@ -84,12 +81,55 @@
     </div>
 </div>
 <script src="js/layui/layui.js"></script>
+<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;
 
     });
+    var myChart = echarts.init(document.getElementById('main'));
+    var myChart2 = echarts.init(document.getElementById('main2'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+    option2 = {
+        title: {
+            text: 'ECharts 入门示例2'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    myChart2.setOption(option2);
 </script>
 </body>
 </html>
