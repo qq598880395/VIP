@@ -22,6 +22,7 @@
 	<mappers>
 	    <mapper resource="com/mapper/vipMapper.xml"/>
 	</mappers>
+
 	
 </configuration>
 

@@ -63,7 +63,7 @@
                         <dd><a href="javascript:;">活动二</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">所有会员</a></li>
                 <li class="layui-nav-item"><a href="">联系我们</a></li>
             </ul>
         </div>

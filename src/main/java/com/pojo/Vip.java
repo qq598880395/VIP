@@ -8,7 +8,7 @@ import java.io.Serializable;
 @TableName("vip_list")
 public class Vip implements Serializable {
     @TableId(value="vip_id",type = IdType.AUTO)
-    private int vip_id;  //会员号
+    private String vip_id;  //会员号
 
     private int openid;  //微信openid
     private String vip_tel; //会员电话
@@ -16,11 +16,11 @@ public class Vip implements Serializable {
     private String vip_IDcard; //会员身份证
     private double vip_money; //会员余额
 
-    public int getVip_id() {
+    public String getVip_id() {
         return vip_id;
     }
 
-    public void setVip_id(int vip_id) {
+    public void setVip_id(String vip_id) {
         this.vip_id = vip_id;
     }
 

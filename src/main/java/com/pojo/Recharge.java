@@ -11,7 +11,7 @@ public class Recharge implements Serializable {
     @TableId(value = "rc_id",type = IdType.AUTO)
     private int rc_id;//充值id
     private int hotel_id;//酒店id
-    private int vip_id;//会员id
+    private String vip_id;//会员id
     private double rc_cost;//充值金额
     private String rc_time;//订单时间
 
@@ -31,11 +31,11 @@ public class Recharge implements Serializable {
         this.hotel_id = hotel_id;
     }
 
-    public int getVip_id() {
+    public String getVip_id() {
         return vip_id;
     }
 
-    public void setVip_id(int vip_id) {
+    public void setVip_id(String vip_id) {
         this.vip_id = vip_id;
     }
 

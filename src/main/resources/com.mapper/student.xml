@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- 本界面用于学习！！不包括工程中 -->
+
+<mapper namespace="com.dao.StudentDAO">
+<!-- sql引用名 -->
+    <sql id="BaseColumn">
+        sid,sname,yw,sx,zf,cs
+    </sql>
+    
+    <!-- column字段名 property参数名(属性名） -->
+    <!-- 增删改不需要写返回类型 查要写 resultMap -->
+    <resultMap type="com.pojo.Student" id="stuMapper">
+        <id column="sid" property="xh"/>
+        <result column="sname" property="xm"/>
+        <result column="yw"    property="yw"/>
+        <result column="sx"    property="sx"/>
+        <result column="zf"    property="zf"/>
+        <result column="cs"    property="cs"/>
+    </resultMap>
+    
+    <!-- 根据主键查找 -->
+    <select id="findById"   resultMap="stuMapper">
+         select <include refid="BaseColumn"/>
+         from   student
+         where  sid = #{x}
+    </select>
+    
+    <!-- 动态sql之动态条件查询 -->
+    <select id="multiQuery" resultMap="stuMapper">
+         select <include refid="BaseColumn"/>
+         from   student
+         <where><!--  if里面为否则where不存在 -->
+             <if test="xh!=null">
+                 sid=#{xh}
+             </if>
+             
+             <if test="xm!=null"><!-- and系统自动取舍 -->
+                and sname like concat(#{xm},'%')
+             </if>
+             
+             <if test="min!=null">
+                and cs>=concat(#{min},' 00:00:00')
+             </if>
+             
+             <if test="max!=null">
+                and cs&lt;=concat(#{max},' 23:59:59')
+             </if>
+         </where>
+         
+         
+        
+    </select>
+    
+    <!-- 根据主键修改1 -->
+    <update id="updateById" parameterType="com.pojo.Student">
+        update student
+        set yw=#{yw},sx=#{sx},sname=#{xm}
+        where sid=#{xh}
+    </update>
+    
+    
+     <!-- 根据主键修改2 -->
+    <update id="updateById2" parameterType="com.pojo.Student">
+        update student
+        <set>
+           <if test="xm!=null">
+               sname=#{xm}
+           </if>
+           
+           <if test="yw!=null"><!-- 逗号系统自动取舍 -->
+               ,yw=#{yw}
+           </if>
+           
+           <if test="sx!=null">
+              ,sx=#{sx}
+           </if>
+        </set>
+        where sid=#{xh}
+    </update>
+    
+    <!-- 多主键查询where sid in (1,2,4,5,7) -->
+    <select id="multiKey" parameterType="list" resultMap="stuMapper">
+       select <include refid="BaseColumn"/>
+       from student
+       where
+          <choose>
+             <when test="list==null or list.size()==0">1=2</when>
+             <otherwise>
+                 sid in
+                 <foreach collection="list" item="xh" open="(" close=")" separator=",">
+                    #{xh}
+                 </foreach>
+             </otherwise>
+          </choose>
+    </select>
+    
+    
+    <!-- 批量新增
+       ('aaa',10,10),
+       ('bbb',20,20),
+       (...)
+     -->
+      
+    <insert id="batchAdd" parameterType="list">
+        insert into student(sname,yw,sx) values
+          <foreach collection="list" item="stu" separator=",">
+              (#{stu.xm},#{stu.yw},#{stu.sx})
+          </foreach>
+    </insert>
+
+
+
+    <!-- 根据主键查员工 -->
+    <select id="findById" parameterType="int" resultMap="empMapper">
+        select <include refid="f"/>
+        from  Emp
+        where empId=#{value}
+    </select>
+
+    <!-- 查所有员工,并显示部门名称 -->
+    <select id="findAllEmpAndDep"  resultType="com.vo.EmpDepVO">
+       select empId,empName,depId,depName
+       from  emp,dep
+       where   emp.did=dep.depid
+   </select>
+
+
+    <!-- 查所有员工,并显示部门名称 -->
+    <select id="findAllEmpAndDep2"  resultMap="empMapper">
+       select empId,empName,did
+       from  emp
+   </select>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</mapper>
