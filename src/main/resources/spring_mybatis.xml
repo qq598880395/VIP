@@ -91,7 +91,7 @@
 
 	<!-- 设置事务织入 -->
 	<aop:config>
-		<aop:advisor advice-ref="mytx" pointcut="execution(* com.serivce.*.*(..))" />
+		<aop:advisor advice-ref="mytx" pointcut="execution(* com.service.*.*(..))" />
 	</aop:config>
 
 </beans> 

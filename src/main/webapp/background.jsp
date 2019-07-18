@@ -49,10 +49,10 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">会员统计</a>
+                    <a class="">会员统计</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">人数统计</a></dd>
-                        <dd><a href="javascript:;">充值金额统计</a></dd>
+                        <dd><a href="echarts.jsp" target="iframe_main">常规统计</a></dd>
+                        <dd><a href="vip_list.jsp" target="iframe_main">会员名单</a></dd>
                         <dd><a href="javascript:;"></a></dd>
                     </dl>
                 </li>
@@ -63,16 +63,17 @@
                         <dd><a href="javascript:;">活动二</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">所有会员</a></li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
                 <li class="layui-nav-item"><a href="">联系我们</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body" >
+        <iframe name="iframe_main" style="width: 100%; height: 1000px;" src="echarts.jsp"></iframe>
 
-        <div id="main" style="width: 600px;height:450px;"style="float: left;"></div>
-        <div id="main2" style="width: 600px;height:450px;"style="float: right;"></div>
+
+
     </div>
 
     <div class="layui-footer">
@@ -88,48 +89,7 @@
         var element = layui.element;
 
     });
-    var myChart = echarts.init(document.getElementById('main'));
-    var myChart2 = echarts.init(document.getElementById('main2'));
 
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        legend: {
-            data:['销量']
-        },
-        xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        },
-        yAxis: {},
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
-    };
-    option2 = {
-        title: {
-            text: 'ECharts 入门示例2'
-        },
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line'
-        }]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-    myChart2.setOption(option2);
 </script>
 </body>
 </html>
