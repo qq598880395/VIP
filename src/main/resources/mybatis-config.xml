@@ -20,7 +20,7 @@
 
 	<!-- 映射文件 -->
 	<mappers>
-	    <mapper resource="com/mapper/vip_Mapper.xml"/>
+	    <mapper resource="com/mapper/vipMapper.xml"/>
 	</mappers>
 
 	

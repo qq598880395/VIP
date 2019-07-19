@@ -36,7 +36,7 @@
         table.render({
             elem: '#demo',
             height: 650,
-            url: 'new1.json',//数据接口
+            url: 'test',//数据接口
             title: '用户表',
             page: true, //开启分页
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
@@ -45,16 +45,14 @@
             cols: [//表头
                 [
                     { type: 'checkbox', fixed: 'left' },
-                    { field: 'id', title: 'ID', width: 80, sort: true },
-                    { field: 'username', title: '用户名', width: 80 },
-                    { field: 'sex', title: '性别', width: 80, sort: true },
-                    { field: 'city', title: '城市', width: 80 },
-                    { field: 'sign', title: '签名', width: 177 },
-                    { field: 'experience', title: '积分', width: 80, sort: true },
-                    { field: 'score', title: '评分', width: 80, sort: true },
-                    { field: 'classify', title: '职业', width: 80 },
-                    { field: 'wealth', title: '财富', width: 135, sort: true },
-                    { fixed: 'right', width: 378, align: 'center', toolbar: '#barDemo' }
+                    { field: 'vip_id', title: 'ID', width: 80, sort: true },
+                    { field: 'openid', title: '用户名', width: 80 },
+                    { field: 'vip_tel', title: '性别', width: 80, sort: true },
+                    { field: 'vip_name', title: '城市', width: 80 },
+                    { field: 'vip_IDcard', title: '签名', width: 177 },
+                    { field: 'hotel_id', title: '积分', width: 80, sort: true },
+                    { field: 'vip_money', title: '评分', width: 80, sort: true },
+                    // { fixed: 'right', width: 378, align: 'center', toolbar: '#barDemo' }
                 ]
             ]
         });

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.VipDAO">
+
+     <select id="findbyVip_id" parameterType="String" resultType="com.pojo.Vip">
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+         from  vip_list
+         where vip_id=#{vip_id}
+     </select>
+     <select id="findbyOpenid" parameterType="int" resultType="com.pojo.Vip">
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+         from  vip_list
+         where openid=#{openid}
+     </select>
+     <select id="findbyVip_tel" parameterType="String" resultType="com.pojo.Vip">
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+         from  vip_list
+         where vip_tel=#{vip_tel}
+     </select>
+
+     <insert id="addVip" parameterType="list">
+         insert into vip_list(vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money)
+          values(#{vip_id},#{openid},#{vip_tel},#{vip_name},#{vip_IDcard},#{vip_money})
+     </insert>
+
+    <select id="findAll"  resultType="com.pojo.Vip">
+        select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+        from vip_list
+    </select>
+
+
+
+</mapper>
