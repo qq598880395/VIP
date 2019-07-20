@@ -19,8 +19,12 @@ public class VipService {
         List list = vipDAO.findAll();
         String jsonString= JSONArray.toJSONString(list);
         System.out.println(jsonString);
-        String jsonString1 ="{\"code\":0, \"msg\":\"\", \"count\":1000, \"data\":"+jsonString+"}" ;
-        System.out.println(jsonString1);
-        return jsonString1;
+//        String jsonString1 ="{\"code\":0, \"msg\":\"\", \"count\":1000, \"data\":"+jsonString+"}" ;
+//        System.out.println(jsonString1);
+        return jsonString;
     }
+//    public int count(){
+//        return  vipDAO.count();
+//    }
+
 }

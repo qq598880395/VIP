@@ -27,7 +27,7 @@
 <script type="text/javascript">
 
     layui.use('table', function() {
-        var table = layui.table; //表格
+        var table = layui.table;//表格
 
         //向世界问个好
         layer.msg('Hello World');
@@ -36,23 +36,32 @@
         table.render({
             elem: '#demo',
             height: 650,
-            url: 'test',//数据接口
+            url: 'findbyid',//数据接口
             title: '用户表',
             page: true, //开启分页
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
             totalRow: true ,//开启合计行\
-
+            limit:10,//十数据一页
+            limit:[10,20,50],
+            response:{
+              statusName:'code',
+              statusCode:0,
+              msgName:'msg',
+              countName:'count',
+              dataName:'data',
+            },
             cols: [//表头
                 [
                     { type: 'checkbox', fixed: 'left' },
-                    { field: 'vip_id', title: 'ID', width: 80, sort: true },
-                    { field: 'openid', title: '用户名', width: 80 },
-                    { field: 'vip_tel', title: '性别', width: 80, sort: true },
-                    { field: 'vip_name', title: '城市', width: 80 },
-                    { field: 'vip_IDcard', title: '签名', width: 177 },
-                    { field: 'hotel_id', title: '积分', width: 80, sort: true },
-                    { field: 'vip_money', title: '评分', width: 80, sort: true },
-                    // { fixed: 'right', width: 378, align: 'center', toolbar: '#barDemo' }
+                    { field: 'vip_id', title: 'ID', width: 110},
+                    { field: 'openid', title: 'openid', width: 110 },
+                    { field: 'vip_tel', title: '电话', width: 110},
+                    { field: 'vip_name', title: '用户名', width: 80 },
+                    { field: 'vip_IDcard', title: '身份证号', width: 177 },
+                    { field: 'hotel_id', title: '酒店ID', width: 80, sort: true },
+                    { field: 'hotel_name', title: '酒店名称', width: 100, sort: true },
+                    { field: 'vip_money', title: '余额', width: 80, sort: true },
+                    { fixed: 'right', width: 378, align: 'center', toolbar: '#barDemo' }
                 ]
             ]
         });

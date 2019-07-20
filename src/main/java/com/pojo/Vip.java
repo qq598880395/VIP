@@ -15,6 +15,24 @@ public class Vip implements Serializable {
     private String vip_name;//会员姓名
     private String vip_IDcard; //会员身份证
     private double vip_money; //会员余额
+    private String hotel_name;//酒店名
+    private  int hotel_id;//酒店id
+
+    public String getHotel_name() {
+        return hotel_name;
+    }
+
+    public void setHotel_name(String hotel_name) {
+        this.hotel_name = hotel_name;
+    }
+
+    public int getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(int hotel_id) {
+        this.hotel_id = hotel_id;
+    }
 
     public String getVip_id() {
         return vip_id;

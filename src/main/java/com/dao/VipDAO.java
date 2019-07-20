@@ -13,5 +13,6 @@ public interface VipDAO extends  BaseMapper<Vip> {
     public Vip findbyOpenid(int openid);
     public List addVip();
     public List findAll();
+//    public  int count();
 
 }
