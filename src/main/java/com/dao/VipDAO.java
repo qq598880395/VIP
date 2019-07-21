@@ -11,7 +11,7 @@ public interface VipDAO extends  BaseMapper<Vip> {
 
     public Vip findbyVip_tel(String vip_tel);
     public Vip findbyOpenid(int openid);
-    public List addVip();
+    public List addVip(String id);
     public List findAll();
 //    public  int count();
 

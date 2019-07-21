@@ -22,8 +22,8 @@
      </select>
 
      <insert id="addVip" parameterType="list">
-         insert into vip_list(vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money)
-          values(#{vip_id},#{openid},#{vip_tel},#{vip_name},#{vip_IDcard},#{vip_money})
+         insert into vip_list(vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,hotel_id)
+          values(#{vip_id},#{openid},#{vip_tel},#{vip_name},#{vip_IDcard},#{vip_money},1001)
      </insert>
 
     <select id="findAll"  resultType="com.pojo.Vip">
