@@ -21,10 +21,22 @@
          where vip_tel=#{vip_tel}
      </select>
 
-     <insert id="addVip" parameterType="list">
-         insert into vip_list(vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,hotel_id)
-          values(#{vip_id},#{openid},#{vip_tel},#{vip_name},#{vip_IDcard},#{vip_money},1001)
+     <insert id="addVipBytel" >
+         insert into vip_list(vip_id,vip_tel,vip_name,vip_money,hotel_id)
+          values(#{vip_id},#{tel},#{tel},0,1001)
      </insert>
+
+    <insert id="addVipByopenid" >
+         insert into vip_list(vip_id,openid,vip_name,vip_money,hotel_id)
+          values(#{vip_id},#{openid},'尊贵的会员',0,1001)
+     </insert>
+
+    <insert id="addVipmsg" >
+         insert into vip_list(vip_name,vip_tel,vip_IDcard,)
+          values(#{vip_name},#{vip_tel},#{vip_IDcard})
+          where vip_id=#{vip_id}
+     </insert>
+
 
     <select id="findAll"  resultType="com.pojo.Vip">
         select
@@ -41,9 +53,9 @@
         on vip_list.hotel_id=hotel.hotel_id
     </select>
 
-    <!--<select id="count" parameterType="int" resultType="com.pojo.Vip">-->
-        <!--SELECT COUNT(*) from vip_list-->
-    <!--</select>-->
+    <select id="count" parameterType="int" resultType="int">
+        SELECT COUNT(*) from vip_list
+    </select>
 
 
 </mapper>

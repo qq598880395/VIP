@@ -30,7 +30,7 @@
         var table = layui.table;//表格
 
         //向世界问个好
-        layer.msg('Hello World');
+        layer.msg('Welcome');
 
         //执行一个 table 实例
         table.render({

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 @TableName("vip_list")
 public class Vip implements Serializable {
     @TableId(value="vip_id",type = IdType.AUTO)
@@ -15,8 +17,16 @@ public class Vip implements Serializable {
     private String vip_name;//会员姓名
     private String vip_IDcard; //会员身份证
     private double vip_money; //会员余额
+    private Timestamp vip_time;//会员加入时间
     private String hotel_name;//酒店名
     private  int hotel_id;//酒店id
+    public Timestamp getVip_time() {
+        return vip_time;
+    }
+
+    public void setVip_time(Timestamp vip_time) {
+        this.vip_time = vip_time;
+    }
 
     public String getHotel_name() {
         return hotel_name;

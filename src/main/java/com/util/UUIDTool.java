@@ -23,10 +23,10 @@ public class UUIDTool {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public static void main(String[] args) {
-//		String[] ss = getUUID(10);
-        for (int i = 0; i < 10; i++) {
-            System.out.println("ss[" + i + "]=====" + getUUID());
-        }
-    }
+//    public static void main(String[] args) {
+////		String[] ss = getUUID(10);
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println("ss[" + i + "]=====" + getUUID());
+//        }
+//    }
 }
