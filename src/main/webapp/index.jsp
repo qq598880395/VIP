@@ -18,8 +18,8 @@ name：<input type="text" id="vip_id">
         alert(vip_id);
         $.ajax({
             url : "delete",
-            type : "post",
-            data : {vip_id:"123456"},
+            type : "get",
+            data : {"vip_id":"123456"},
             datatype:"json",
             contentType:"application/json;charset=UTF-8",
             success : function(data) {
