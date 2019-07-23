@@ -19,22 +19,23 @@ name：<input type="text" id="vip_id">
         $.ajax({
             url : "delete",
             type : "get",
-            data : {"vip_id":"123456"},
+            data : {"vip_id":vip_id},
             datatype:"json",
             contentType:"application/json;charset=UTF-8",
             success : function(data) {
 
-                // if (data == null) {
-                //         alert("查无此人");
-                // }
-                // else {
-                //     if(data==1){
-                //         alert("成功！");
-                //     }
-                //  else {
-                //     alert("失败！");
+                if (data == null) {
+                    alert("nobody");
+                } else {
+                    if (data == 1) {
+                        alert("success");
+                        window.location.href="background.jsp";
+                    } else {
+                        alert("fauls");
+
+                    }
                 }
-            // }
+            }
         });
     });
 

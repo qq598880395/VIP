@@ -60,12 +60,12 @@ public class VipAction {
 
     @ResponseBody
     @RequestMapping(value="/delete")
-    public  int  delete( Vip  vip_id ){
+    public  int  delete( String vip_id ){
         int num=0;
-//        if (vip_id!= null) {
-//            num = service.deleteMsg(vip_id);
-//        }
-        System.out.println(vip_id.getVip_id());
+        if (vip_id!= null) {
+            num = service.deleteMsg(vip_id);
+        }
+        System.out.println(vip_id);
         return num;
 
     }
