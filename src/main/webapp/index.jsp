@@ -15,13 +15,11 @@ name：<input type="text" id="vip_id">
     // var jsonstr=JSON.stringify(vip_id);
     $("#btn_login").click(function() {
         var vip_id = $("#vip_id").val();
-        var vip={"vip_id": "123"};
-        var jsondata=JSON.stringify(vip);
         alert(vip_id);
         $.ajax({
             url : "delete",
             type : "post",
-            data : jsondata,
+            data : {vip_id:"123456"},
             datatype:"json",
             contentType:"application/json;charset=UTF-8",
             success : function(data) {
