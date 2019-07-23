@@ -32,29 +32,29 @@
     // 指定图表的配置项和数据
     var option = {
         title: {
-            text: 'ECharts 入门示例'
+            text: '每月新增会员'
         },
         tooltip: {},
         legend: {
-            data:['销量']
+            data:['人数']
         },
         xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            data: ["2019.6","2019.7","2019.8","2019.9","2019.10","2019.11"]
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '人数',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: [10, 20, 30, 40, 50, 60]
         }]
     };
     option2 = {
         title: {
-            text: 'ECharts 入门示例2'
+            text: '每月充值总额'
         },
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ["2019.6","2019.7","2019.8","2019.9","2019.10","2019.11"]
         },
         yAxis: {
             type: 'value'

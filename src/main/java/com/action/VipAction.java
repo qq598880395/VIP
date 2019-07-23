@@ -1,14 +1,18 @@
 package com.action;
 
-import com.dao.VipDAO;
+import com.alibaba.fastjson.JSONObject;
 import com.pojo.Vip;
 import com.service.VipService;
 import com.util.UUIDTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import sun.misc.Request;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 public class VipAction {
@@ -43,6 +47,28 @@ public class VipAction {
         return "background.jsp";
     }
 
+    @RequestMapping("/updateMsg")
+    public String updateMsg(){
+
+        String vip_id="f3e1f1304b7c4168b7fe9b895eba4f94";
+        String vip_name="黄星华";
+        String vip_IDcrad="430981199901176311";
+        String vip_tel="13366818856";
+        service.updateMsg(vip_id,vip_name,vip_IDcrad,vip_tel);
+        return "background.jsp";
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/delete")
+    public  int  delete( Vip  vip_id ){
+        int num=0;
+//        if (vip_id!= null) {
+//            num = service.deleteMsg(vip_id);
+//        }
+        System.out.println(vip_id.getVip_id());
+        return num;
+
+    }
 
 
 

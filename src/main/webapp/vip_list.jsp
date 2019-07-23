@@ -61,7 +61,8 @@
                     { field: 'hotel_id', title: '酒店ID', width: 80, sort: true },
                     { field: 'hotel_name', title: '酒店名称', width: 100, sort: true },
                     { field: 'vip_money', title: '余额', width: 80, sort: true },
-                    { fixed: 'right', width: 378, align: 'center', toolbar: '#barDemo' }
+                    { field: 'vip_time', title: '加入时间', width: 130, sort: true },
+                    { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' }
                 ]
             ]
         });

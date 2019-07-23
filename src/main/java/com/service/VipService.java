@@ -36,4 +36,17 @@ public class VipService {
         int x = 1;
         return x;
     }
+    public int updateMsg(String vip_id ,String vip_name,String vip_IDcrad, String vip_tel){
+        vipDAO.updateVipmsg(vip_id,vip_name,vip_IDcrad,vip_tel);
+        int x =1;
+        return x;
+    }
+    public int deleteMsg(String vip_id){
+        int x = vipDAO.deleteVip(vip_id);
+        return x;
+    }
+    public int countByid(String vip_id){
+        int x = vipDAO.count();
+        return  x;
+    }
 }

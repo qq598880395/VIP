@@ -5,11 +5,12 @@
 
 <mapper namespace="com.dao.VipDAO">
 
-     <select id="findbyVip_id" parameterType="String" resultType="com.pojo.Vip">
+    <select id="findbyVip_name" parameterType="String" resultType="com.pojo.Vip">
          select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
          from  vip_list
-         where vip_id=#{vip_id}
+         where vip_name=#{vip_name}
      </select>
+
      <select id="findbyOpenid" parameterType="int" resultType="com.pojo.Vip">
          select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
          from  vip_list
@@ -31,11 +32,10 @@
           values(#{vip_id},#{openid},'尊贵的会员',0,1001)
      </insert>
 
-    <insert id="addVipmsg" >
-         insert into vip_list(vip_name,vip_tel,vip_IDcard,)
-          values(#{vip_name},#{vip_tel},#{vip_IDcard})
+    <update id="updateVipmsg" >
+         update vip_list set vip_name=#{vip_name},vip_tel=#{vip_tel},vip_IDcard=#{vip_IDcard}
           where vip_id=#{vip_id}
-     </insert>
+     </update>
 
 
     <select id="findAll"  resultType="com.pojo.Vip">
@@ -46,6 +46,7 @@
         vip_list.vip_name,
         vip_list.vip_IDcard,
         vip_list.vip_money,
+        vip_list.vip_time,
         hotel.hotel_id,
         hotel.hotel_name
         from vip_list
@@ -57,5 +58,9 @@
         SELECT COUNT(*) from vip_list
     </select>
 
+    <delete id="deleteVip" >
+        delete from vip_list
+        where vip_id = #{vip_id}
+    </delete>
 
 </mapper>
