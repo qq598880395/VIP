@@ -48,14 +48,13 @@ public class VipAction {
     }
 
     @RequestMapping("/updateMsg")
-    public String updateMsg(){
+    @ResponseBody
+    public int updateMsg(String vip_id,String vip_name,String vip_IDcard,String vip_tel){
+        System.out.println(vip_id);
+        System.out.println(vip_name);
 
-        String vip_id="f3e1f1304b7c4168b7fe9b895eba4f94";
-        String vip_name="黄星华";
-        String vip_IDcrad="430981199901176311";
-        String vip_tel="13366818856";
-        service.updateMsg(vip_id,vip_name,vip_IDcrad,vip_tel);
-        return "background.jsp";
+        int x = service.updateMsg(vip_id,vip_name,vip_IDcard,vip_tel);
+        return x;
     }
 
     @ResponseBody

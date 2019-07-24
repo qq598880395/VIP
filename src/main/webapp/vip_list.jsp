@@ -18,7 +18,7 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="btn_delete" >删除</a>
 </script>
 
 </body>
@@ -95,18 +95,56 @@
         // });
         //监听 行 工具事件
         table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+
             var data = obj.data ,//获得当前行数据
                 layEvent = obj.event; //获得 lay-event 对应的值
+           // var jsondata=JSON.stringify(data);
+            var jsondata = JSON.parse(JSON.stringify(data));
+
             if(layEvent === 'del') {
-                layer.confirm('真的删除行么', function(index) {
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
-                });
-            } else if(layEvent === 'edit') {
-                layer.msg('编辑操作:<br>' + JSON.stringify(data));
-            }
-        });
+                if(jsondata.vip_money>=1)
+                {
+                    alert('无法删除 用户还有余额');
+                }
+                // for(var key in jsondata){
+                //
+                //     alert(key); //json对象的key
+                //
+                //     alert(jsondata[key]); //json对象的值
+                // }
+                else {
+                    layer.confirm('真的删除此人么', function(index) {
+                obj.del(); //删除对应行（tr）的DOM结构
+                layer.close(index);
+                        var vip_id = jsondata.vip_id;
+                        $.ajax({
+                            url : "delete",
+                            type : "get",
+                            data : {"vip_id":vip_id},
+                            datatype:"json",
+                            contentType:"application/json;charset=UTF-8",
+                            success : function(data) {
+
+                                if (data == null) {
+                                    alert("错误 没有找到对象");
+                                } else {
+                                    if (data == 1) {
+                                        alert("删除成功");
+                                        // window.location.href="background.jsp";
+                                    } else {
+                                        alert("删除失败 错误原因未知");
+
+                                    }
+                                }
+                            }
+                        });
+                //向服务端发送删除指令
+            });
+                }
+        } else if(layEvent === 'edit') {
+            layer.msg('没有权限，只允许用户本人修改');
+        }
+    });
     });
 </script>
 

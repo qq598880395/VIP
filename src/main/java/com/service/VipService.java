@@ -37,8 +37,8 @@ public class VipService {
         return x;
     }
     public int updateMsg(String vip_id ,String vip_name,String vip_IDcrad, String vip_tel){
-        vipDAO.updateVipmsg(vip_id,vip_name,vip_IDcrad,vip_tel);
-        int x =1;
+
+        int x = vipDAO.updateVipmsg(vip_id,vip_name,vip_IDcrad,vip_tel);
         return x;
     }
     public int deleteMsg(String vip_id){
