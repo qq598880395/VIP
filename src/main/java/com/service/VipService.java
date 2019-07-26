@@ -46,7 +46,11 @@ public class VipService {
         return x;
     }
     public int countByid(String vip_id){
-        int x = vipDAO.count();
+        int x = vipDAO.countByVip_id(vip_id);
+        return  x;
+    }
+    public int countBytel(String vip_tel){
+        int x = vipDAO.countByVip_tel(vip_tel);
         return  x;
     }
 }

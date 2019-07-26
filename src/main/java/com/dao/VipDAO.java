@@ -15,7 +15,8 @@ public interface VipDAO extends  BaseMapper<Vip> {
     public int updateVipmsg(@Param("vip_id") String vip_id,@Param("vip_name") String name,@Param("vip_IDcard") String vip_IDcard,@Param("vip_tel") String vip_tel);
     public List findAll();
     public  int count();
-    public int updateMsg();
     public  int deleteVip(String vip_id);
+    public  int countByVip_id(String vip_id);
+    public  int countByVip_tel(String vip_tel);
 
 }

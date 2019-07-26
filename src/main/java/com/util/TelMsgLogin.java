@@ -108,18 +108,18 @@ public class TelMsgLogin {
 //        System.out.println("RequestId=" + response.getRequestId());
 //        System.out.println("BizId=" + response.getBizId());
 //    }
-          public  String Setcode() throws ClientException {
-              setNewcode();
-        String code = Integer.toString(getNewcode());
-        System.out.println("发送的验证码为："+code);
-        //发短信
-        SendSmsResponse response =sendSms("13973723157",code); // TODO 填写你需要测试的手机号码
-        System.out.println("短信接口返回的数据----------------");
-        System.out.println("Code=" + response.getCode());
-        System.out.println("Message=" + response.getMessage());
-        System.out.println("RequestId=" + response.getRequestId());
-        System.out.println("BizId=" + response.getBizId());
-        return code;
+          public  static String Setcode(String tel) throws ClientException {
+            setNewcode();
+            String code = Integer.toString(getNewcode());
+            System.out.println("发送的验证码为："+code);
+            //发短信
+            SendSmsResponse response =sendSms(tel,code); // TODO 填写你需要测试的手机号码
+            System.out.println("短信接口返回的数据----------------");
+            System.out.println("Code=" + response.getCode());
+            System.out.println("Message=" + response.getMessage());
+            System.out.println("RequestId=" + response.getRequestId());
+            System.out.println("BizId=" + response.getBizId());
+            return code;
     }
 
 

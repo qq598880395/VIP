@@ -1,8 +1,10 @@
 package com.action;
 
 import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.exceptions.ClientException;
 import com.pojo.Vip;
 import com.service.VipService;
+import com.util.TelMsgLogin;
 import com.util.UUIDTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,9 +34,8 @@ public class VipAction {
     }
 
     @RequestMapping("/add")
-    public  String addvip(){
+    public  String addvip(String vip_tel){
         String vip_id = UUIDTool.getUUID();
-        String vip_tel = "13973738888";
         service.addVip(vip_id,vip_tel);
         return "background.jsp";
     }
@@ -68,7 +69,32 @@ public class VipAction {
         return num;
 
     }
-
+    @ResponseBody
+    @RequestMapping(value="/sendCode")
+    public  String sendCode (String vip_tel) throws ClientException {
+        int count = service.countBytel(vip_tel);
+        System.out.println(count);
+//        String code = TelMsgLogin.Setcode(vip_tel);
+        String code ="1111";
+        JSONObject json =new JSONObject();
+        int status;
+        if(count==0)
+        {
+            status=0;
+            json.put("code",code);
+            json.put("status",status);
+            addvip(vip_tel);
+        }
+        else if(count==1)
+        {
+            status=1;
+            json.put("code",code);
+            json.put("status",status);
+        }
+        String json1=json.toString();
+        System.out.println(json1);
+        return json1;
+    }
 
 
 }

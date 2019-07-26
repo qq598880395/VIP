@@ -63,4 +63,13 @@
         where vip_id = #{vip_id}
     </delete>
 
+    <select id="countByVip_id" parameterType="String" resultType="int">
+        SELECT COUNT(*) from vip_list
+        where vip_id=#{vip_id}
+    </select>
+
+    <select id="countByVip_tel" parameterType="String" resultType="int">
+        SELECT COUNT(*) from vip_list
+        where vip_tel=#{vip_tel}
+    </select>
 </mapper>

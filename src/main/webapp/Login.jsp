@@ -37,32 +37,32 @@ code:<input type="text" id="code">
             contentType:"application/json;charset=UTF-8",
             success : function(data) {
                 var jsondata = JSON.parse(data);
-               code1 =jsondata.code;
+                code1 =jsondata.code;
 
-               status=jsondata.status;
-               alert(status);
+                status=jsondata.status;
+                alert(status);
             }
         });
 
 
 
     });
-        $("#btn_login").click(function() {
-            var code=$("#code").val();//输入的验证码
-            if(code==code1){
-                if(status==1) {
-                    alert("welcome");
-                    window.location.href="background.jsp";
-                }
-                else if(status==0){
-                    alert("注册成功，请先完善会员信息")
-                    window.location.href="updateVipMsg.jsp";
-                }
+    $("#btn_login").click(function() {
+        var code=$("#code").val();//输入的验证码
+        if(code==code1){
+            if(status==1) {
+                alert("welcome");
+                window.location.href="background.jsp";
             }
-            else{
-                alert("验证码错误");
+            else if(status==0){
+                alert("注册成功，请先完善会员信息")
+                window.location.href="updateVipMsg.jsp";
             }
+        }
+        else{
+            alert("验证码错误");
+        }
 
-        });
+    });
 </script>
 </html>
