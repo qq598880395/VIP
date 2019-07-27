@@ -19,4 +19,5 @@ public interface VipDAO extends  BaseMapper<Vip> {
     public  int countByVip_id(String vip_id);
     public  int countByVip_tel(String vip_tel);
 
+
 }

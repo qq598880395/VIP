@@ -14,13 +14,15 @@
 <div class="layui-form-item">
 
     <div class="layui-inline">
+        <span > *注：A到C数额由小到大！</span>
+        <br>
         <label class="layui-form-label">优惠A:充</label>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc1">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc_a">
         </div>
         <div class="layui-form-mid">送</div>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="give1">
+            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="rc_a_regiv">
         </div>
     </div>
 
@@ -30,11 +32,11 @@
     <div class="layui-inline">
         <label class="layui-form-label">优惠B:充</label>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc2">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc_b">
         </div>
         <div class="layui-form-mid">送</div>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="give2">
+            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="rc_b_regiv">
         </div>
     </div>
 
@@ -44,17 +46,17 @@
     <div class="layui-inline">
         <label class="layui-form-label">优惠C:充</label>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc3">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc_c">
         </div>
         <div class="layui-form-mid">送</div>
         <div class="layui-input-inline" style="width: 100px;">
-            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="give3">
+            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input" id="rc_c_regiv">
         </div>
     </div>
 
 </div>
 
-<button id="sure3" type="button"  class="layui-btn layui-btn-normal">apply</button>
+<button id="sure" type="button"  class="layui-btn layui-btn-normal">确定</button>
 
 
 
@@ -66,10 +68,10 @@
 <script src="js/layui/layui.js"></script>
 <script type="text/javascript">
 
-    var rc1,rc2,rc3,give1,give2,give3;
+    var rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv;
     // var jsonstr=JSON.stringify(vip_id);
-    $("#btn_update").click(function() {
-        var vip_tel=$("#vip_tel").val();
+    $("#sure").click(function() {
+        rc_a=$("#vip_tel").val();
 
         alert(vip_tel);
 
