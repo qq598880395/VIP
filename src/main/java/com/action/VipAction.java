@@ -95,5 +95,11 @@ public class VipAction {
         return json1;
     }
 
+    @ResponseBody
+    @RequestMapping("/rcCase")
+    public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv){
+        int x = service.rcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv);
+        return x;
+    }
 
 }

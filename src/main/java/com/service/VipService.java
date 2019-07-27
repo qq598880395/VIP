@@ -2,6 +2,7 @@ package com.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.dao.Rc_caseDAO;
 import com.dao.VipDAO;
 import com.pojo.Vip;
 import javafx.scene.control.Alert;
@@ -15,6 +16,8 @@ import java.util.List;
 public class VipService {
     @Autowired
     private VipDAO vipDAO ;
+    @Autowired
+    private Rc_caseDAO rc_caseDAO;
 
     public String getVip(){
         List list = vipDAO.findAll();
@@ -52,5 +55,9 @@ public class VipService {
     public int countBytel(String vip_tel){
         int x = vipDAO.countByVip_tel(vip_tel);
         return  x;
+    }
+    public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv){
+        int x = rc_caseDAO.updateRcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv);
+        return x;
     }
 }

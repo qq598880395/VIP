@@ -8,14 +8,12 @@
     <link rel="stylesheet" href="js/layui/css/layui.css">
 </head>
 <body>
-
-<br>
 <br>
 <div class="layui-form-item">
 
     <div class="layui-inline">
-        <span > *注：A到C数额由小到大！</span>
-        <br>
+            <i class="layui-icon">&#xe66e;</i> <span > -A到C数额由小到大！</span>
+        <br> <br>
         <label class="layui-form-label">优惠A:充</label>
         <div class="layui-input-inline" style="width: 100px;">
             <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input" id="rc_a">
@@ -56,11 +54,10 @@
 
 </div>
 
-<button id="sure" type="button"  class="layui-btn layui-btn-normal">确定</button>
-
+<i class="layui-icon">&#xe62e;</i> <a id="sure" type="button"  class="layui-btn layui-btn-normal">确定</a>
 
 <a href="background.jsp" class="layui-btn">Hello World!</a>
-<a href="rcCase.jsp" class="layui-btn">rccase</a>
+
 <%--<jsp:forward page="background.jsp"></jsp:forward>--%>
 </body>
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -78,7 +75,7 @@
         rc_c_regiv=$("#rc_c_regiv").val();
 
         alert(rc_a+","+rc_b+","+rc_c);
-
+        if(rc_a<rc_b<rc_c&&rc_a!=null&&rc_b!=null&&rc_c!=null){}
         $.ajax({
             url : "sendCode",
             type : "get",
@@ -99,22 +96,22 @@
 
 
     });
-        // $("#btn_login").click(function() {
-        //     var code=$("#code").val();//输入的验证码
-        //     if(code==code1){
-        //         if(status==1) {
-        //             alert("welcome");
-        //             window.location.href="background.jsp";
-        //         }
-        //         else if(status==0){
-        //             alert("注册成功，请先完善会员信息")
-        //             window.location.href="updateVipMsg.jsp";
-        //         }
-        //     }
-        //     else{
-        //         alert("验证码错误");
-        //     }
-        //
-        // });
+    // $("#btn_login").click(function() {
+    //     var code=$("#code").val();//输入的验证码
+    //     if(code==code1){
+    //         if(status==1) {
+    //             alert("welcome");
+    //             window.location.href="background.jsp";
+    //         }
+    //         else if(status==0){
+    //             alert("注册成功，请先完善会员信息")
+    //             window.location.href="updateVipMsg.jsp";
+    //         }
+    //     }
+    //     else{
+    //         alert("验证码错误");
+    //     }
+    //
+    // });
 </script>
 </html>
