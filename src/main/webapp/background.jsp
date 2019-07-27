@@ -64,7 +64,13 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">联系我们</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">联系我们</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-layer"></i>邮箱</a></dd>
+                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-cellphone-fine"></i>电话</a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>

@@ -74,8 +74,7 @@ public class VipAction {
     public  String sendCode (String vip_tel) throws ClientException {
         int count = service.countBytel(vip_tel);
         System.out.println(count);
-//        String code = TelMsgLogin.Setcode(vip_tel);
-        String code ="1111";
+        String code = TelMsgLogin.Setcode(vip_tel);
         JSONObject json =new JSONObject();
         int status;
         if(count==0)

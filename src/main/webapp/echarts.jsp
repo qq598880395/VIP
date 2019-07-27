@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css"/>
 <body>
 <div class="layui-row">
-    <div id="main" class="layui-col-xs6" style="width: 600px;height:450px;"></div>
-    <div id="main2" class="layui-col-xs6" style="width: 600px;height:450px;"></div>
+    <div id="main" class="layui-col-xs6 layui-anim layui-anim-fadein" style="width: 600px;height:450px;"></div>
+    <div id="main2" class="layui-col-xs6 layui-anim layui-anim-fadein" style="width: 600px;height:450px;"></div>
 </div>
 </body>
 <script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
