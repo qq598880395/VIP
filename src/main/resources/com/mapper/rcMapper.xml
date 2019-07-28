@@ -5,8 +5,8 @@
 
 <mapper namespace="com.dao.Rc_caseDAO">
     <update id="updateRcCase" >
-         update rc_case set rc_a=#{rc_a},rc_b=#{rc_b},rc_c=#{rc_c},rc_a_regiv=#{rc_a_regiv},rc_b_regiv=#{rc_b_regiv},rc_c_regiv=#{rc_c_regiv},
-          where rc_caseid=1
+         update rc_case set rc_a=#{rc_a},rc_b=#{rc_b},rc_c=#{rc_c},rc_a_regiv=#{rc_a_regiv},rc_b_regiv=#{rc_b_regiv},rc_c_regiv=#{rc_c_regiv}
+          where rc_caseid=#{rc_caseid}
      </update>
 
 </mapper>

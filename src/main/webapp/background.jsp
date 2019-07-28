@@ -59,16 +59,16 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">优惠活动</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">活动一</a></dd>
-                        <dd><a href="javascript:;">活动二</a></dd>
+                        <dd><a href="rcCase.jsp" target="iframe_main">活动方案</a></dd>
+
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">云市场</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">联系我们</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-layer"></i>邮箱</a></dd>
-                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-cellphone-fine"></i>电话</a></dd>
+                        <dd><a ><i class="layui-icon layui-icon-layer"></i>598880395@qq.com</a></dd>
+                        <dd><a ><i class="layui-icon layui-icon-cellphone-fine"></i>13973723157</a></dd>
                     </dl>
                 </li>
             </ul>

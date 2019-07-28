@@ -56,8 +56,6 @@
 
 <i class="layui-icon">&#xe62e;</i> <a id="sure" type="button"  class="layui-btn layui-btn-normal">确定</a>
 
-<a href="background.jsp" class="layui-btn">Hello World!</a>
-
 <%--<jsp:forward page="background.jsp"></jsp:forward>--%>
 </body>
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -74,10 +72,34 @@
         rc_b_regiv=$("#rc_b_regiv").val();
         rc_c_regiv=$("#rc_c_regiv").val();
 
-        alert(rc_a+","+rc_b+","+rc_c);
-        if(rc_a<rc_b<rc_c&&rc_a!=null&&rc_b!=null&&rc_c!=null){}
-        $.ajax({
-            url : "sendCode",
+        if(((rc_a<rc_b<rc_c)&&rc_a!=0&&rc_b!=0&&rc_c!=0)|| ((rc_a==0&&rc_b!=0&&rc_c!=0)&&(rc_b<rc_c))||(rc_a!=0&&rc_b==0&&rc_c!=0&&(rc_a<rc_c) || (rc_a!=0&&rc_b!=0&&rc_c ==0)&&(rc_a<rc_b))||((rc_a!=0&&rc_b==0&&rc_c==0)||(rc_a==0&&rc_b!=0&&rc_c==0)||(rc_a==0&&rc_b==0&&rc_c!=0)) ){
+            if(rc_a==0)
+            {
+                rc_a=0;
+            }
+            if(rc_b==0)
+            {
+                rc_b=0;
+            }
+            if(rc_c==0)
+            {
+                rc_c=0;
+            }
+            if(rc_a_regiv==0)
+            {
+                rc_a_regiv=0;
+            }
+            if(rc_b_regiv==0)
+            {
+                rc_b_regiv=0;
+            }
+            if(rc_c_regiv==0)
+            {
+                rc_c_regiv=0;
+            }
+            alert(rc_a_regiv);
+            $.ajax({
+            url : "rcCase",
             type : "get",
             data : {"rc_a":rc_a,"rc_b":rc_b,"rc_c":rc_c,"rc_a_regiv":rc_a_regiv,"rc_b_regiv":rc_b_regiv,"rc_c_regiv":rc_c_regiv},
             datatype:"json",
@@ -92,6 +114,13 @@
                 }
             }
         });
+
+        }
+        else
+        {
+            alert ("参数错误,注意是否从小到大");
+        }
+
 
 
 

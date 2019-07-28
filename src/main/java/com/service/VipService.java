@@ -56,8 +56,8 @@ public class VipService {
         int x = vipDAO.countByVip_tel(vip_tel);
         return  x;
     }
-    public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv){
-        int x = rc_caseDAO.updateRcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv);
+    public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv,int rc_caseid){
+        int x = rc_caseDAO.updateRcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,rc_caseid);
         return x;
     }
 }

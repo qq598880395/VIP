@@ -21,7 +21,9 @@
 	<!-- 映射文件 -->
 	<mappers>
 	    <mapper resource="com/mapper/vipMapper.xml"/>
+		<mapper resource="com/mapper/rcMapper.xml"/>
 	</mappers>
+
 
 	
 </configuration>
