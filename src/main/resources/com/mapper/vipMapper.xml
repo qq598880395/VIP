@@ -11,10 +11,10 @@
          where vip_name=#{vip_name}
      </select>
 
-     <select id="findbyOpenid" parameterType="int" resultType="com.pojo.Vip">
-         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+     <select id="findbyVip_id" parameterType="String" resultType="com.pojo.Vip">
+         select vip_id,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
          from  vip_list
-         where openid=#{openid}
+         where vip_id=#{vip_id}
      </select>
      <select id="findbyVip_tel" parameterType="String" resultType="com.pojo.Vip">
          select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money

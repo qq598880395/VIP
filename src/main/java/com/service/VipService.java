@@ -2,8 +2,10 @@ package com.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dao.Rc_caseDAO;
 import com.dao.VipDAO;
+import com.pojo.Rc_case;
 import com.pojo.Vip;
 import javafx.scene.control.Alert;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
@@ -59,5 +61,17 @@ public class VipService {
     public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv,int rc_caseid){
         int x = rc_caseDAO.updateRcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,rc_caseid);
         return x;
+    }
+    public String findMsg(String vip_id){
+        Vip vip = vipDAO.findbyVip_id(vip_id);
+        String jsonString= JSONObject.toJSONString(vip);
+        System.out.println(jsonString);
+        return jsonString;
+    }
+    public String getRc(int rc_caseid){
+        Rc_case rc_case = rc_caseDAO.findbyRc_id(rc_caseid);
+        String jsonString = JSONObject.toJSONString(rc_case);
+        System.out.println(jsonString);
+        return jsonString;
     }
 }

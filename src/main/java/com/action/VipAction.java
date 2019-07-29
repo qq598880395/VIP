@@ -103,5 +103,18 @@ public class VipAction {
         System.out.println(rc_a+","+rc_a_regiv+","+rc_b+","+rc_b_regiv+","+rc_c+","+rc_c_regiv);
         return x;
     }
-
+    @ResponseBody
+    @RequestMapping("/findMsg")
+    public String findMsg(String vip_id){
+       String json= service.findMsg(vip_id);
+        System.out.println(json);
+        return json;
+    }
+    @ResponseBody
+    @RequestMapping("/getRc")
+    public String getRc(int rc_caseid){
+        String json = service.getRc(rc_caseid);
+        System.out.println(json);
+        return json;
+    }
 }
