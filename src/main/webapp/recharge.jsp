@@ -18,16 +18,15 @@
 
 </div>
 
-<div >您好，请先<a href="Login.jsp"> 登录</a>
+<div ><span id="name"></span>,你好,您的余额：<span id="money">      </span>
     <br><br>
-
+    <button id="rc_btn" class="layui-btn layui-btn-normal" style="margin-left: 20px;" onclick="rc_click()">充值</button></div>
 
 <%--<div id="rc_area"></div>--%>
 <br>
 <button id="sure" type="button" style="margin-left: 20px;" class="layui-btn layui-btn-normal">确定</button>
 <a href="background.jsp" class="layui-btn">Hello World!</a>
 <a href="rcCase.jsp" class="layui-btn">rccase</a>
-<a href="recharge.jsp" class="layui-btn">recharge</a>
 
 <div id="recharge" style="width:100%;display: none;" class="layui-container">
     <div class="layui-row" >
@@ -41,7 +40,7 @@
             <br>
 
             <button id="rc_sure"  type="button"  class="layui-btn layui-btn-normal" style="margin-left: 40%;">确定</button>
-                <a id="rc_close"  href=" " type="button"  class="layui-btn layui-btn-normal" >关闭</a></div>
+            <a id="rc_close"  href=" " type="button"  class="layui-btn layui-btn-normal" >关闭</a></div>
 
         <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
     </div>
@@ -88,25 +87,25 @@
         var rc_caseid = 1;
         recharge.style.display="block";
 
-            $.ajax({
-                url : "getRc",
-                type : "get",
-                data : {"rc_caseid":rc_caseid},
-                datatype:"json",
-                contentType:"application/json;charset=UTF-8",
-                success : function(data) {
-                    var jsondata = JSON.parse(data);
-                    rc_a=jsondata.rc_a;
-                    rc_b=jsondata.rc_b;
-                    rc_c=jsondata.rc_c;
-                    rc_a_regiv=jsondata.rc_a_regiv;
-                    rc_b_regiv=jsondata.rc_b_regiv;
-                    rc_c_regiv=jsondata.rc_c_regiv;
-                    if(jsondata.rc_a!=0||jsondata.rc_b!=0||jsondata.rc_c!=0){
-                        rcfont.style.display="block";
-                    }
+        $.ajax({
+            url : "getRc",
+            type : "get",
+            data : {"rc_caseid":rc_caseid},
+            datatype:"json",
+            contentType:"application/json;charset=UTF-8",
+            success : function(data) {
+                var jsondata = JSON.parse(data);
+                rc_a=jsondata.rc_a;
+                rc_b=jsondata.rc_b;
+                rc_c=jsondata.rc_c;
+                rc_a_regiv=jsondata.rc_a_regiv;
+                rc_b_regiv=jsondata.rc_b_regiv;
+                rc_c_regiv=jsondata.rc_c_regiv;
+                if(jsondata.rc_a!=0||jsondata.rc_b!=0||jsondata.rc_c!=0){
+                    rcfont.style.display="block";
                 }
-            });
+            }
+        });
 
     };
 
@@ -124,6 +123,7 @@
                 if(data==1)
                 {
                     alert("充值成功");
+                    window.location.href="recharge.jsp";
                 }
                 else{
                     alert("充值失败");
@@ -135,22 +135,22 @@
 
 
     });
-        // $("#btn_login").click(function() {
-        //     var code=$("#code").val();//输入的验证码
-        //     if(code==code1){
-        //         if(status==1) {
-        //             alert("welcome");
-        //             window.location.href="background.jsp";
-        //         }
-        //         else if(status==0){
-        //             alert("注册成功，请先完善会员信息")
-        //             window.location.href="updateVipMsg.jsp";
-        //         }
-        //     }
-        //     else{
-        //         alert("验证码错误");
-        //     }
-        //
-        // });
+    // $("#btn_login").click(function() {
+    //     var code=$("#code").val();//输入的验证码
+    //     if(code==code1){
+    //         if(status==1) {
+    //             alert("welcome");
+    //             window.location.href="background.jsp";
+    //         }
+    //         else if(status==0){
+    //             alert("注册成功，请先完善会员信息")
+    //             window.location.href="updateVipMsg.jsp";
+    //         }
+    //     }
+    //     else{
+    //         alert("验证码错误");
+    //     }
+    //
+    // });
 </script>
 </html>

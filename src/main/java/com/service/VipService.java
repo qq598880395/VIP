@@ -82,10 +82,11 @@ public class VipService {
     public int recharge(String vip_id,double rc_cost,String rc_id){
         Vip vip =vipDAO.findbyVip_id(vip_id);
         double vip_money = vip.getVip_money();
+        String vip_name = vip.getVip_name();
         vip_money=vip_money+rc_cost;
         int hotel_id=vip.getHotel_id();
         vipDAO.updateVip_money(vip_id,vip_money);
-        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id);
+        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name);
         return x;
     }
 

@@ -124,10 +124,11 @@ public class VipAction {
     @ResponseBody
     @RequestMapping("/recharge")
     public int recharge(String vip_id , double rc_cost ){
-        Rc_case rc_case = service.getRc(1);
         System.out.println(rc_cost);
+        Rc_case rc_case = service.getRc(1);
+
         double rc_num1=0;//最终结果
-        int rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv ,num,n,m;//num 存优惠方案  m存翻倍值 n中间数
+        int rc_a=0,rc_b=0,rc_c=0,rc_a_regiv,rc_b_regiv,rc_c_regiv ,num,n,m;//num 存优惠方案  m存翻倍值 n中间数
         rc_a=rc_case.getRc_a();
         rc_b=rc_case.getRc_b();
         rc_c=rc_case.getRc_c();
@@ -241,16 +242,17 @@ public class VipAction {
                 rc_num1= rc_cost+num*m;
             }
         }
-        else if (rc_a!=0&&rc_b!=0&&rc_c!=0)
+        else if(rc_a!=0&&rc_b!=0&&rc_c!=0)
         {
-            if (rc_cost<=rc_a)
+            if (rc_cost<rc_a)
             {
                 num=0;
                 rc_num1=rc_cost;
             }
             else if(rc_cost>=rc_a&&rc_cost<rc_b)
             {
-
+                num=rc_a_regiv;
+                rc_num1=rc_cost+num;
             }
             else if(rc_cost>=rc_b&&rc_cost<rc_c)
             {
@@ -268,8 +270,8 @@ public class VipAction {
         }
         String rc_id = UUIDTool.getUUID();
         System.out.println(rc_num1);
-//        int x = service.recharge(vip_id,rc_num1,rc_id);
-        return 0;
+        int x = service.recharge(vip_id,rc_num1,rc_id);
+        return x;
 
     }
 

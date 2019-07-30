@@ -52,7 +52,7 @@ code:<input type="text" id="code">
         if(code==code1){
             if(status==1) {
                 alert("welcome");
-                window.location.href="background.jsp";
+                window.location.href="recharge.jsp";
             }
             else if(status==0){
                 alert("注册成功，请先完善会员信息")

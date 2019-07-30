@@ -5,6 +5,6 @@ import com.pojo.Recharge;
 import org.apache.ibatis.annotations.Param;
 
 public interface RechargeDAO  {
-    public int addOrder(@Param("vip_id") String vip_id,@Param("rc_id") String rc_id,@Param("rc_cost") double rc_cost,@Param("hotel_id") int hotel_id);
+    public int addOrder(@Param("vip_id") String vip_id,@Param("rc_id") String rc_id,@Param("rc_cost") double rc_cost,@Param("hotel_id") int hotel_id,@Param("vip_name") String vip_name);
 
 }
