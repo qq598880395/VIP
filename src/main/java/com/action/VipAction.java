@@ -2,6 +2,7 @@ package com.action;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.exceptions.ClientException;
+import com.pojo.Rc_case;
 import com.pojo.Vip;
 import com.service.VipService;
 import com.util.TelMsgLogin;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.Request;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -113,8 +115,163 @@ public class VipAction {
     @ResponseBody
     @RequestMapping("/getRc")
     public String getRc(int rc_caseid){
-        String json = service.getRc(rc_caseid);
+        Rc_case rc_case = service.getRc(rc_caseid);
+        String json = JSONObject.toJSONString(rc_case);
         System.out.println(json);
         return json;
     }
+
+    @ResponseBody
+    @RequestMapping("/recharge")
+    public int recharge(String vip_id , double rc_cost ){
+        Rc_case rc_case = service.getRc(1);
+        System.out.println(rc_cost);
+        double rc_num1=0;//最终结果
+        int rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv ,num,n,m;//num 存优惠方案  m存翻倍值 n中间数
+        rc_a=rc_case.getRc_a();
+        rc_b=rc_case.getRc_b();
+        rc_c=rc_case.getRc_c();
+        rc_a_regiv=rc_case.getRc_a_regiv();
+        rc_b_regiv=rc_case.getRc_b_regiv();
+        rc_c_regiv=rc_case.getRc_c_regiv();
+
+        if(rc_a==0&&rc_b==0&&rc_c==0)
+        {
+            rc_num1=rc_cost;
+        }
+        else if(rc_a!=0&&rc_b==0&&rc_c==0)
+        {
+
+            if(rc_cost>=rc_a){
+                 n=(int)(rc_cost-rc_cost%rc_a);
+                 m=n/rc_a;
+                num=rc_a_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+            else {
+                num = 0;
+                rc_num1=rc_cost;
+            }
+        }
+        else if(rc_a==0&&rc_b!=0&&rc_c==0)
+        {
+
+            if(rc_cost>=rc_b){
+                 n=(int)(rc_cost-rc_cost%rc_b);
+                 m=n/rc_b;
+                num=rc_b_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+            else {
+                num = 0;
+                rc_num1=rc_cost;
+            }
+        }
+        else if(rc_a==0&&rc_b==0&&rc_c!=0)
+        {
+
+            if(rc_cost>=rc_c){
+                 n=(int)(rc_cost-rc_cost%rc_c);
+                 m=n/rc_c;
+                num=rc_c_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+            else {
+                num = 0;
+                rc_num1=rc_cost;
+            }
+        }
+        else if (rc_a!=0&&rc_b!=0&&rc_c==0)
+        {
+            if (rc_cost<=rc_a)
+            {
+                num=0;
+                rc_num1=rc_cost;
+            }
+            else if(rc_cost>=rc_a&&rc_cost<rc_b)
+            {
+                num=rc_a_regiv;
+                rc_num1 = rc_cost+num;
+            }
+            else if(rc_cost>=rc_b)
+            {
+                 n=(int)(rc_cost-rc_cost%rc_b);
+                 m=n/rc_b;
+                num=rc_b_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+        }
+        else if (rc_a!=0&&rc_b==0&&rc_c!=0)
+        {
+            if (rc_cost<=rc_a)
+            {
+                num=0;
+                rc_num1=rc_cost;
+            }
+            else if(rc_cost>=rc_a&&rc_cost<rc_c)
+            {
+                num=rc_a_regiv;
+                rc_num1 = rc_cost+num;
+            }
+            else if(rc_cost>=rc_c)
+            {
+                n=(int)(rc_cost-rc_cost%rc_c);
+                m=n/rc_c;
+                num=rc_c_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+        }
+        else if (rc_a==0&&rc_b!=0&&rc_c!=0)
+        {
+            if (rc_cost<=rc_b)
+            {
+                num=0;
+                rc_num1=rc_cost;
+            }
+            else if(rc_cost>=rc_b&&rc_cost<rc_c)
+            {
+                num=rc_b_regiv;
+                rc_num1 = rc_cost+num;
+            }
+            else if(rc_cost>=rc_c)
+            {
+                n=(int)(rc_cost-rc_cost%rc_c);
+                m=n/rc_c;
+                num=rc_c_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+        }
+        else if (rc_a!=0&&rc_b!=0&&rc_c!=0)
+        {
+            if (rc_cost<=rc_a)
+            {
+                num=0;
+                rc_num1=rc_cost;
+            }
+            else if(rc_cost>=rc_a&&rc_cost<rc_b)
+            {
+
+            }
+            else if(rc_cost>=rc_b&&rc_cost<rc_c)
+            {
+                num=rc_b_regiv;
+                rc_num1 = rc_cost+num;
+
+            }
+            else if(rc_cost>=rc_c)
+            {
+                n=(int)(rc_cost-rc_cost%rc_c);
+                m=n/rc_c;
+                num=rc_c_regiv;
+                rc_num1= rc_cost+num*m;
+            }
+        }
+        String rc_id = UUIDTool.getUUID();
+        System.out.println(rc_num1);
+//        int x = service.recharge(vip_id,rc_num1,rc_id);
+        return 0;
+
+    }
+
+
 }

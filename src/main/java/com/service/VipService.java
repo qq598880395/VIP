@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.Rc_caseDAO;
+import com.dao.RechargeDAO;
 import com.dao.VipDAO;
 import com.pojo.Rc_case;
+import com.pojo.Recharge;
 import com.pojo.Vip;
 import javafx.scene.control.Alert;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
@@ -20,6 +22,8 @@ public class VipService {
     private VipDAO vipDAO ;
     @Autowired
     private Rc_caseDAO rc_caseDAO;
+    @Autowired
+    private RechargeDAO rechargeDAO;
 
     public String getVip(){
         List list = vipDAO.findAll();
@@ -68,10 +72,22 @@ public class VipService {
         System.out.println(jsonString);
         return jsonString;
     }
-    public String getRc(int rc_caseid){
+    public Rc_case getRc(int rc_caseid) {
         Rc_case rc_case = rc_caseDAO.findbyRc_id(rc_caseid);
-        String jsonString = JSONObject.toJSONString(rc_case);
-        System.out.println(jsonString);
-        return jsonString;
+//        String jsonString = JSONObject.toJSONString(rc_case);
+//        System.out.println(jsonString);
+        return rc_case;
     }
+
+    public int recharge(String vip_id,double rc_cost,String rc_id){
+        Vip vip =vipDAO.findbyVip_id(vip_id);
+        double vip_money = vip.getVip_money();
+        vip_money=vip_money+rc_cost;
+        int hotel_id=vip.getHotel_id();
+        vipDAO.updateVip_money(vip_id,vip_money);
+        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id);
+        return x;
+    }
+
 }
+

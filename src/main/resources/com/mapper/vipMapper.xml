@@ -72,4 +72,9 @@
         SELECT COUNT(*) from vip_list
         where vip_tel=#{vip_tel}
     </select>
+
+    <update id="updateVip_money" >
+         update vip_list set vip_money=#{vip_money}
+          where vip_id=#{vip_id}
+     </update>
 </mapper>

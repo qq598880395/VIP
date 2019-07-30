@@ -18,6 +18,8 @@ public interface VipDAO extends  BaseMapper<Vip> {
     public  int deleteVip(String vip_id);
     public  int countByVip_id(String vip_id);
     public  int countByVip_tel(String vip_tel);
+    public int updateVip_money(@Param("vip_id") String vip_id,@Param("vip_money") double vip_money);
+
 
 
 }
