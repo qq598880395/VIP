@@ -58,28 +58,42 @@
 
     // var jsonstr=JSON.stringify(vip_id);
     function load(){
-        vip_id="22222222";
         $.ajax({
-            url : "findMsg",
-            type : "get",
-            data : {"vip_id":vip_id},
-            datatype:"json",
-            contentType:"application/json;charset=UTF-8",
-            success : function(data) {
-                var jsondata = JSON.parse(data);
-                vip_money=jsondata.vip_money;
-                vip_name=jsondata.vip_name;
-                if (vip_name==0)
-                {
-                    vip_name=jsondata.vip_tel;
-                    if(vip_name==0){
-                        vip_name="尊贵的会员";
+            async: true,
+            dataType: "json",
+            type: "POST",
+            url: "checkVip",
+            success: function (data) {
+                console.log(data);
+                alert(data);
+                vip_id=data.vip_id;
+                alert(vip_id);
+                $.ajax({
+                    url : "findMsg",
+                    type : "get",
+                    data : {"vip_id":vip_id},
+                    datatype:"json",
+                    contentType:"application/json;charset=UTF-8",
+                    success : function(data) {
+
+                        var jsondata = JSON.parse(data);
+                        vip_money=jsondata.vip_money;
+                        vip_name=jsondata.vip_name;
+                        if (vip_name==0)
+                        {
+                            vip_name=jsondata.vip_tel;
+                            if(vip_name==0){
+                                vip_name="尊贵的会员";
+                            }
+                        }
+                        document.getElementById("name").innerHTML=vip_name;
+                        document.getElementById("money").innerHTML=vip_money;
                     }
-                }
-                document.getElementById("name").innerHTML=vip_name;
-                document.getElementById("money").innerHTML=vip_money;
+                })
             }
         })
+        // vip_id="6b17e570ee124e9d8fb24afd8ab1446c";
+
     };
     function rc_click(){
         var rcfont = document.getElementById("rcfont");
@@ -135,22 +149,6 @@
 
 
     });
-    // $("#btn_login").click(function() {
-    //     var code=$("#code").val();//输入的验证码
-    //     if(code==code1){
-    //         if(status==1) {
-    //             alert("welcome");
-    //             window.location.href="background.jsp";
-    //         }
-    //         else if(status==0){
-    //             alert("注册成功，请先完善会员信息")
-    //             window.location.href="updateVipMsg.jsp";
-    //         }
-    //     }
-    //     else{
-    //         alert("验证码错误");
-    //     }
-    //
-    // });
+
 </script>
 </html>

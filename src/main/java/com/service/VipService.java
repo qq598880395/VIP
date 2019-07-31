@@ -66,11 +66,9 @@ public class VipService {
         int x = rc_caseDAO.updateRcCase(rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,rc_caseid);
         return x;
     }
-    public String findMsg(String vip_id){
+    public Vip findMsg(String vip_id){
         Vip vip = vipDAO.findbyVip_id(vip_id);
-        String jsonString= JSONObject.toJSONString(vip);
-        System.out.println(jsonString);
-        return jsonString;
+        return vip;
     }
     public Rc_case getRc(int rc_caseid) {
         Rc_case rc_case = rc_caseDAO.findbyRc_id(rc_caseid);
@@ -89,6 +87,9 @@ public class VipService {
         int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name);
         return x;
     }
-
+    public Vip findByVip_tel(String vip_tel){
+        Vip vip = vipDAO.findbyVip_tel(vip_tel);
+        return vip;
+    }
 }
 

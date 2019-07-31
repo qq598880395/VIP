@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-07-27 12:00:05
+Date: 2019-07-31 11:00:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,24 +99,19 @@ CREATE TABLE `rc_case` (
 -- ----------------------------
 -- Records of rc_case
 -- ----------------------------
-INSERT INTO `rc_case` VALUES ('1', null, null, null, null, null, null);
+INSERT INTO `rc_case` VALUES ('1', '100', '200', '300', '20', '45', '80');
 
 -- ----------------------------
 -- Table structure for recharge
 -- ----------------------------
 DROP TABLE IF EXISTS `recharge`;
 CREATE TABLE `recharge` (
-  `rc_id` int(11) NOT NULL,
+  `rc_id` varchar(255) NOT NULL,
   `vip_id` varchar(255) NOT NULL,
+  `vip_name` varchar(255) DEFAULT NULL,
   `rc_cost` decimal(10,2) NOT NULL,
-  `rc_time` datetime NOT NULL,
-  `hotel_id` int(11) NOT NULL,
-  `rc_a` int(11) DEFAULT '0',
-  `rc_a_regiv` int(11) DEFAULT '0',
-  `rc_b` int(11) DEFAULT '0',
-  `rc_b_regiv` int(11) DEFAULT '0',
-  `rc-c` int(11) DEFAULT '0',
-  `rc-c_regiv` int(11) DEFAULT '0',
+  `rc_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `hotel_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`rc_id`),
   KEY `vip_id` (`vip_id`),
   CONSTRAINT `recharge_ibfk_1` FOREIGN KEY (`vip_id`) REFERENCES `vip_list` (`vip_id`)
@@ -125,6 +120,13 @@ CREATE TABLE `recharge` (
 -- ----------------------------
 -- Records of recharge
 -- ----------------------------
+INSERT INTO `recharge` VALUES ('3e640189c6c84341a681ccd2dbf856d0', '22222222', '???', '245.00', '2019-07-30 16:08:54', '1002');
+INSERT INTO `recharge` VALUES ('458a0a3ccc61415c9ca51c8af5bb04ea', '22222222', '???', '3800.00', '2019-07-30 16:05:27', '1002');
+INSERT INTO `recharge` VALUES ('69ede5bb371c4cc497892c24dafcea1e', '22222222', '黄民豪', '580.00', '2019-07-30 15:59:59', '1002');
+INSERT INTO `recharge` VALUES ('767464b87c4e4f45b01ff970d66b095c', '22222222', '???', '120.00', '2019-07-30 16:12:44', '1002');
+INSERT INTO `recharge` VALUES ('9752e33a318f4f9e8a6439c49fec6315', '22222222', '???', '100.00', '2019-07-30 16:08:08', '1002');
+INSERT INTO `recharge` VALUES ('aab5ec338a524fcebf090e61ac8816b4', '22222222', '???', '10.00', '2019-07-30 16:06:22', '1002');
+INSERT INTO `recharge` VALUES ('bc59a4e209cd48e3962a6ad36968a5b5', '22222222', '???', '120.00', '2019-07-30 16:12:30', '1002');
 
 -- ----------------------------
 -- Table structure for vip_list
@@ -148,5 +150,6 @@ CREATE TABLE `vip_list` (
 -- Records of vip_list
 -- ----------------------------
 INSERT INTO `vip_list` VALUES ('11111111', '123456789', '13355556666', '陈洋', '13150419990323621x', '1001', '20000.00', '2019-07-23 22:09:18');
-INSERT INTO `vip_list` VALUES ('22222222', '987654321', '15856658998', '黄民豪', '165457199804301201', '1002', '10000.00', '2019-07-23 22:09:28');
+INSERT INTO `vip_list` VALUES ('22222222', '987654321', '15856658998', '黄民豪', '165457199804301201', '1002', '14975.00', '2019-07-30 16:12:44');
 INSERT INTO `vip_list` VALUES ('33333333', '542165487', '13973723156', '方慕槐', '430981199901176311', '1001', '200000.00', '2019-07-26 18:28:36');
+INSERT INTO `vip_list` VALUES ('6b17e570ee124e9d8fb24afd8ab1446c', null, '13973723157', '13973723157', null, '1001', '0.00', '2019-07-31 00:38:57');

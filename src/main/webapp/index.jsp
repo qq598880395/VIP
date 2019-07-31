@@ -22,42 +22,19 @@
     <br><br>
 
 
-<%--<div id="rc_area"></div>--%>
 <br>
 <button id="sure" type="button" style="margin-left: 20px;" class="layui-btn layui-btn-normal">确定</button>
 <a href="background.jsp" class="layui-btn">Hello World!</a>
 <a href="rcCase.jsp" class="layui-btn">rccase</a>
 <a href="recharge.jsp" class="layui-btn">recharge</a>
 
-<div id="recharge" style="width:100%;display: none;" class="layui-container">
-    <div class="layui-row" >
-        <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
-        <div class="layui-col-md4 layui-col-xs8" style="height: 30%; border: #F8F8F8 2px solid;background-color: #F8F8F8">
-            <div style="width: 100%;height: 30px;text-align: center; border-bottom: #c0c4cc 2px solid;font-size: 20px;">充值</div>
-            <br>
-            <input type="text" name="title" required lay-verify="required" placeholder="请输入充值金额" autocomplete="off" class="layui-input"id = "rc_cost">
-
-            <br><div  id="rcfont" style="margin-left: 20px;display:none;">*现在有优惠，多充多送喔！</div>
-            <br>
-
-            <button id="rc_sure"  type="button"  class="layui-btn layui-btn-normal" style="margin-left: 40%;">确定</button>
-                <a id="rc_close"  href=" " type="button"  class="layui-btn layui-btn-normal" >关闭</a></div>
-
-        <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
-    </div>
-</div>
 
 <%--<jsp:forward page="background.jsp"></jsp:forward>--%>
 </body>
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/layui/layui.js"></script>
 <script type="text/javascript">
-    var vip_id,vip_name,_vip_money;
-    var rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv;
-    // http://how2j.cn/k/ssm/ssm-json/1575.html#nowhere
 
-
-    // var jsonstr=JSON.stringify(vip_id);
     function load(){
         vip_id="22222222";
         $.ajax({
@@ -110,47 +87,10 @@
 
     };
 
-    $("#rc_sure").click(function() {
-        var rc_cost=$("#rc_cost").val();
-
-
-        $.ajax({
-            url : "recharge",
-            type : "get",
-            data : {"vip_id":vip_id,"rc_cost":rc_cost},
-            datatype:"json",
-            contentType:"application/json;charset=UTF-8",
-            success : function(data) {
-                if(data==1)
-                {
-                    alert("充值成功");
-                }
-                else{
-                    alert("充值失败");
-                    window.location.href="recharge.jsp";
-                }
-            }
-        });
 
 
 
-    });
-        // $("#btn_login").click(function() {
-        //     var code=$("#code").val();//输入的验证码
-        //     if(code==code1){
-        //         if(status==1) {
-        //             alert("welcome");
-        //             window.location.href="background.jsp";
-        //         }
-        //         else if(status==0){
-        //             alert("注册成功，请先完善会员信息")
-        //             window.location.href="updateVipMsg.jsp";
-        //         }
-        //     }
-        //     else{
-        //         alert("验证码错误");
-        //     }
-        //
-        // });
+
+
 </script>
 </html>

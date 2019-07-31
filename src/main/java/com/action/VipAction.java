@@ -2,21 +2,26 @@ package com.action;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.exceptions.ClientException;
+import com.google.gson.Gson;
 import com.pojo.Rc_case;
 import com.pojo.Vip;
 import com.service.VipService;
 import com.util.TelMsgLogin;
 import com.util.UUIDTool;
+import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.Request;
 
+import javax.json.Json;
 import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Controller
 public class VipAction {
@@ -72,19 +77,17 @@ public class VipAction {
 
     }
     @ResponseBody
-    @RequestMapping(value="/sendCode")
-    public  String sendCode (String vip_tel) throws ClientException {
-        int count = service.countBytel(vip_tel);
-        System.out.println(count);
+    @RequestMapping("/sendCode")
+    public  String sendCode (String vip_tel) throws  ClientException{
         String code = TelMsgLogin.Setcode(vip_tel);
-        JSONObject json =new JSONObject();
+        int count = service.countBytel(vip_tel);
         int status;
+        JSONObject json =new JSONObject();
         if(count==0)
         {
             status=0;
             json.put("code",code);
             json.put("status",status);
-            addvip(vip_tel);
         }
         else if(count==1)
         {
@@ -94,8 +97,73 @@ public class VipAction {
         }
         String json1=json.toString();
         System.out.println(json1);
+        return  json1;
+    }
+    @ResponseBody
+    @RequestMapping(value="/login")
+    public String login(String vip_tel,  String status) {
+
+        JSONObject json =new JSONObject();
+        if(status=="0")
+        {
+            addvip(vip_tel);
+        }
+
+        Vip vip = service.findByVip_tel(vip_tel);
+        String vip_id = vip.getVip_id();
+        json.put("vip_id",vip_id);
+        json.put("vip_name",vip.getVip_name());
+        json.put("vip_money",vip.getVip_money());
+        json.put("vip_tel",vip.getVip_tel());
+        json.put("vip_IDcard",vip.getVip_IDcard());
+        json.put("hotel_id",vip.getHotel_id());
+        String json1=json.toString();
+        System.out.println(json1);
+
+
+
         return json1;
     }
+//    @ResponseBody
+    @RequestMapping(value="/dosession")
+    public void dosession(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        //编码规范
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+
+        String vip_tel = request.getParameter("vip_tel");
+        System.out.println();
+        System.out.println();
+        System.out.println(vip_tel);
+        Vip vip = service.findByVip_tel(vip_tel);
+//        vip.setVip_money(2.2);
+        PrintWriter out = response.getWriter();//测试用 printWriter可用来创建一个文件并向文本文件写入数据。可以理解为java中的文件输出
+        //转GSON
+        Gson gson=new Gson();
+        String vipGson= gson.toJson(vip);
+        //将vip存进session
+        HttpSession session =request.getSession();
+        session.setAttribute("vip",vipGson);
+
+
+    }
+
+    @RequestMapping("/checkVip")
+    public void checkVip(HttpServletRequest request,HttpServletResponse response) {
+        //编码规范
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        //获取session值
+        HttpSession session = request.getSession();
+        Object vip = session.getAttribute("vip");
+        try {
+            PrintWriter out = response.getWriter();
+            out.write((String) vip);
+        } catch (Exception e) {
+            System.out.println("Nothing session");
+        }
+    }
+
 
     @ResponseBody
     @RequestMapping("/rcCase")
@@ -108,8 +176,13 @@ public class VipAction {
     @ResponseBody
     @RequestMapping("/findMsg")
     public String findMsg(String vip_id){
-       String json= service.findMsg(vip_id);
-        System.out.println(json);
+        System.out.println();
+        System.out.println();
+        System.out.println(vip_id);
+        Vip vip = service.findMsg(vip_id);
+        String json= JSONObject.toJSONString(vip);
+//        System.out.println(json);
+
         return json;
     }
     @ResponseBody
@@ -117,7 +190,7 @@ public class VipAction {
     public String getRc(int rc_caseid){
         Rc_case rc_case = service.getRc(rc_caseid);
         String json = JSONObject.toJSONString(rc_case);
-        System.out.println(json);
+//        System.out.println(json);
         return json;
     }
 
@@ -274,6 +347,7 @@ public class VipAction {
         return x;
 
     }
+
 
 
 }
