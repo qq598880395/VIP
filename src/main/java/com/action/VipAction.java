@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 @Controller
 public class VipAction {
@@ -57,9 +59,14 @@ public class VipAction {
 
     @RequestMapping("/updateMsg")
     @ResponseBody
-    public int updateMsg(String vip_id,String vip_name,String vip_IDcard,String vip_tel){
-        System.out.println(vip_id);
+    public int updateMsg(String vip_id,String vip_name,String vip_IDcard,String vip_tel) throws UnsupportedEncodingException {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+//        vip_name= URLDecoder.decode(vip_name,"utf-8");
         System.out.println(vip_name);
+        System.out.println();
+        System.out.println();
 
         int x = service.updateMsg(vip_id,vip_name,vip_IDcard,vip_tel);
         return x;
@@ -347,7 +354,12 @@ public class VipAction {
         return x;
 
     }
+    @ResponseBody
+    @RequestMapping("/findbytel")
+    public int findbytel(String vip_tel){
+        int x = service.countBytel(vip_tel);
+        return x;
 
-
+    }
 
 }

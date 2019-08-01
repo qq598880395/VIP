@@ -27,6 +27,7 @@
 <button id="sure" type="button" style="margin-left: 20px;" class="layui-btn layui-btn-normal">确定</button>
 <a href="background.jsp" class="layui-btn">Hello World!</a>
 <a href="rcCase.jsp" class="layui-btn">rccase</a>
+<a href="updateVipMsg.jsp" class="layui-btn">update</a>
 
 <div id="recharge" style="width:100%;display: none;" class="layui-container">
     <div class="layui-row" >
@@ -65,9 +66,7 @@
             url: "checkVip",
             success: function (data) {
                 console.log(data);
-                alert(data);
                 vip_id=data.vip_id;
-                alert(vip_id);
                 $.ajax({
                     url : "findMsg",
                     type : "get",

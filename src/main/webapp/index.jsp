@@ -35,29 +35,25 @@
 <script src="js/layui/layui.js"></script>
 <script type="text/javascript">
 
-    function load(){
-        vip_id="22222222";
-        $.ajax({
-            url : "findMsg",
-            type : "get",
-            data : {"vip_id":vip_id},
-            datatype:"json",
-            contentType:"application/json;charset=UTF-8",
-            success : function(data) {
-                var jsondata = JSON.parse(data);
-                vip_money=jsondata.vip_money;
-                vip_name=jsondata.vip_name;
-                if (vip_name==0)
-                {
-                    vip_name=jsondata.vip_tel;
-                    if(vip_name==0){
-                        vip_name="尊贵的会员";
+
+        function load() {
+            $.ajax({
+                async: true,
+                dataType: "json",
+                type: "POST",
+                url: "checkVip",
+                success: function (data) {
+                    console.log(data);
+                    var vip_id = data.vip_id;
+                    if (vip_id!=null)
+                    {
+                        window.location.href="recharge.jsp";
                     }
+
+
                 }
-                document.getElementById("name").innerHTML=vip_name;
-                document.getElementById("money").innerHTML=vip_money;
-            }
-        })
+            })
+
     };
     function rc_click(){
         var rcfont = document.getElementById("rcfont");
