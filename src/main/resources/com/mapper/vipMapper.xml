@@ -39,19 +39,9 @@
 
 
     <select id="findAll"  resultType="com.pojo.Vip">
-        select
-        vip_list.vip_id,
-        vip_list.openid,
-        vip_list.vip_tel,
-        vip_list.vip_name,
-        vip_list.vip_IDcard,
-        vip_list.vip_money,
-        vip_list.vip_time,
-        hotel.hotel_id,
-        hotel.hotel_name
+        select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name
         from vip_list
-        inner join hotel
-        on vip_list.hotel_id=hotel.hotel_id
+
     </select>
 
     <select id="count" parameterType="int" resultType="int">

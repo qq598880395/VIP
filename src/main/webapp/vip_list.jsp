@@ -38,11 +38,17 @@
             height: 650,
             url: 'findbyid',//数据接口
             title: '用户表',
-            page: true, //开启分页
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
             totalRow: true ,//开启合计行\
-            limit:10,//十数据一页
-            limit:[10,20,50],
+            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+                //,curr: 5 //设定初始在第 5 页
+                ,groups: 5 //只显示 1 个连续页码
+                ,first: "首页" //不显示首页
+                ,last: "尾页" //不显示尾页
+              },
+            limit:5,//十数据一页
+            limits:[5,10,20,50],
             response:{
               statusName:'code',
               statusCode:0,
@@ -64,7 +70,8 @@
                     { field: 'vip_time', title: '加入时间', width: 130, sort: true },
                     { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' }
                 ]
-            ]
+            ],
+            page: true //开启分页
         });
 
         //监听 头 工具栏事件
