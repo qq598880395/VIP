@@ -2,6 +2,7 @@ package com.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pojo.Vip;
+import com.util.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,6 +20,12 @@ public interface VipDAO extends  BaseMapper<Vip> {
     public  int countByVip_id(String vip_id);
     public  int countByVip_tel(String vip_tel);
     public int updateVip_money(@Param("vip_id") String vip_id,@Param("vip_money") double vip_money);
+    //通过关键字分页查询数据列表
+    public List<Vip> selectPageList(Page page);
+
+    //通过关键字分页查询，返回总记录数
+    public Integer selectPageCount(Page page);
+
 
 
 

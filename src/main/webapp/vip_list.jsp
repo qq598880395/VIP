@@ -13,7 +13,22 @@
 </head>
 <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css"/>
 <body>
+<br>
+<div class="demoTable" style="margin-left: 20px">
+    搜索：
+    <div class="layui-inline">
+        <input class="layui-input" name="keyWord" id="keyWord" autocomplete="off">
+    </div>
+    <span class="input-group-btn">
+                            <select name="keyType" id="key_type" class="layui-btn">
+                                <option value="vip_tel" selected="selected">手机号</option>
+                                 <option value="vip_name"  >姓名</option>
+                            </select>
+        </span>
+    <button class="layui-btn" data-type="reload">搜索</button>
 
+</div>
+<br>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 
 <script type="text/html" id="barDemo">
@@ -36,7 +51,7 @@
         table.render({
             elem: '#demo',
             height: 650,
-            url: 'findbyid',//数据接口
+            url: 'findallvip',//数据接口
             title: '用户表',
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
             totalRow: true ,//开启合计行\
@@ -47,6 +62,7 @@
                 ,first: "首页" //不显示首页
                 ,last: "尾页" //不显示尾页
               },
+            id:'viplist',
             limit:5,//十数据一页
             limits:[5,10,20,50],
             response:{
@@ -113,12 +129,7 @@
                 {
                     alert('无法删除 用户还有余额');
                 }
-                // for(var key in jsondata){
-                //
-                //     alert(key); //json对象的key
-                //
-                //     alert(jsondata[key]); //json对象的值
-                // }
+
                 else {
                     layer.confirm('真的删除此人么', function(index) {
                 obj.del(); //删除对应行（tr）的DOM结构
@@ -152,7 +163,29 @@
             layer.msg('没有权限，只允许用户本人修改');
         }
     });
+        var $ = layui.jquery, active = {
+
+            reload:function () {
+                var keyWord=$("#keyWord").val();
+                var keyType=$("#key_type option:selected").val();
+                table.reload('viplist',{
+                    method:'post',
+                    where:{keyWord:keyWord,keyType:keyType}
+                });
+            }
+        };
+        $('i').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
     });
+
+
 </script>
 
 

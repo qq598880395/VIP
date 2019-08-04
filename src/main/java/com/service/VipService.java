@@ -94,5 +94,15 @@ public class VipService {
         Vip vip = vipDAO.findbyVip_tel(vip_tel);
         return vip;
     }
+
+    public List<Vip> selectPageList(com.util.Page page) {
+        List<Vip>list=vipDAO.selectPageList(page);
+        return list;
+    }
+
+    public Integer selectPageCount(com.util.Page page) {
+        return vipDAO.selectPageCount(page);
+    }
+
 }
 

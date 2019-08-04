@@ -3,11 +3,12 @@ package com.action;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.exceptions.ClientException;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
 import com.pojo.Rc_case;
 import com.pojo.Vip;
 import com.service.VipService;
+import com.util.Page;
+import com.util.ResultMap;
 import com.util.TelMsgLogin;
 import com.util.UUIDTool;
 
@@ -30,17 +31,20 @@ public class VipAction {
     @Autowired
     private VipService service;
 
-    @RequestMapping(value = "/findbyid",produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "/findallvip")
     //@responsebody用来将返回值解析成json数据 不使用则返回一个跳转路径
+    @ResponseBody
+    public ResultMap<List<Vip>> backContent(Page page, @RequestParam("limit") int limit){
+        page.setRows(limit);
 
-    public @ResponseBody String testFindBuvipid(){
-        String Vipmsg=service.getVip();
-        int count = service.count();
-        String json ="{\"code\":0, \"msg\":\"\", \"count\":"+count+",\"data\":"+Vipmsg+"}" ;
-//        String json ="{\"code\":0, \"msg\":\"\", \"count\":1000,\"data\":"+Vipmsg+"}" ;
-        System.out.println(json);
-        return json;
+        List<Vip> vipList=service.selectPageList(page);
+        int totals=service.selectPageCount(page);
+        System.out.println();
+        System.out.println(totals);
+        page.setTotalRecord(totals);
+        return new ResultMap<List<Vip>>(0,"",totals,vipList);
     }
+
 
     @RequestMapping("/add")
     public  String addvip(String vip_tel){
