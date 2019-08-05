@@ -5,6 +5,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.gson.Gson;
 import com.pojo.Rc_case;
+import com.pojo.Recharge;
 import com.pojo.Vip;
 import com.service.VipService;
 import com.util.Page;
@@ -43,6 +44,20 @@ public class VipAction {
         System.out.println(totals);
         page.setTotalRecord(totals);
         return new ResultMap<List<Vip>>(0,"",totals,vipList);
+    }
+
+    @RequestMapping(value = "/findalllist")
+    //@responsebody用来将返回值解析成json数据 不使用则返回一个跳转路径
+    @ResponseBody
+    public ResultMap<List<Recharge>> backlist(Page page, @RequestParam("limit") int limit){
+        page.setRows(limit);
+
+        List<Recharge> rcList=service.selectPageList1(page);
+        int totals=service.selectPageCount1(page);
+        System.out.println();
+        System.out.println(totals);
+        page.setTotalRecord(totals);
+        return new ResultMap<List<Recharge>>(0,"",totals,rcList);
     }
 
 
@@ -113,11 +128,14 @@ public class VipAction {
     @ResponseBody
     @RequestMapping(value="/login")
     public String login(String vip_tel,  String status) {
-
+        System.out.println(vip_tel);
+        System.out.println(status);
         JSONObject json =new JSONObject();
-        if(status=="0")
+        if(status.equals("0"))
         {
-            addvip(vip_tel);
+            String vip_id = UUIDTool.getUUID();
+            System.out.println(vip_id);
+            service.addVip(vip_id,vip_tel);
         }
 
         Vip vip = service.findByVip_tel(vip_tel);

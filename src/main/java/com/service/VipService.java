@@ -102,7 +102,17 @@ public class VipService {
     }
 
     public Integer selectPageCount(com.util.Page page) {
+
         return vipDAO.selectPageCount(page);
+    }
+    public List<Recharge> selectPageList1(com.util.Page page) {
+        List<Recharge>list=rechargeDAO.selectPageList(page);
+        return list;
+    }
+
+    public Integer selectPageCount1(com.util.Page page) {
+
+        return rechargeDAO.selectPageCount(page);
     }
 
 }

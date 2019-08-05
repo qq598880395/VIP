@@ -48,7 +48,7 @@
         table.render({
             elem: '#demo',
             height: 650,
-            url: 'findallvip',//数据接口
+            url: 'findalllist',//数据接口
             title: '用户表',
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
             totalRow: true ,//开启合计行\

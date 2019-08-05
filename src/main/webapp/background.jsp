@@ -57,9 +57,10 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">优惠活动</a>
+                    <a href="javascript:;">会员充值</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="rcCase.jsp" target="iframe_main">活动方案</a></dd>
+                        <dd><a href="rcCase.jsp" target="iframe_main">优惠活动</a></dd>
+                        <dd><a href="rc_list.jsp" target="iframe_main">充值记录</a></dd>
 
                     </dl>
                 </li>

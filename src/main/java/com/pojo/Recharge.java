@@ -9,17 +9,35 @@ import java.io.Serializable;
 @TableName("recharge")
 public class Recharge implements Serializable {
     @TableId(value = "rc_id",type = IdType.AUTO)
-    private int rc_id;//充值id
+    private String rc_id;//充值id
     private int hotel_id;//酒店id
     private String vip_id;//会员id
     private double rc_cost;//充值金额
     private String rc_time;//订单时间
+    private String vip_name;//会员姓名
+    private String vip_tel;//会员电话
 
-    public int getRc_id() {
+    public String getVip_name() {
+        return vip_name;
+    }
+
+    public void setVip_name(String vip_name) {
+        this.vip_name = vip_name;
+    }
+
+    public String getVip_tel() {
+        return vip_tel;
+    }
+
+    public void setVip_tel(String vip_tel) {
+        this.vip_tel = vip_tel;
+    }
+
+    public String getRc_id() {
         return rc_id;
     }
 
-    public void setRc_id(int rc_id) {
+    public void setRc_id(String rc_id) {
         this.rc_id = rc_id;
     }
 

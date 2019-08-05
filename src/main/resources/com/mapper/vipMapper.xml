@@ -82,7 +82,7 @@
             </if>
 
         </where>
-        order by vip_id DESC
+        order by vip_time DESC
         limit #{start},#{rows}
     </select>
 

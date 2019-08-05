@@ -31,7 +31,6 @@ code:<input type="text" id="code">
     $("#btn_sendcode").click(function() {
         vip_tel=$("#vip_tel").val();
 
-        alert(vip_tel);
 
         $.ajax({
             url : "sendCode",
@@ -63,25 +62,23 @@ code:<input type="text" id="code">
                 success : function(data) {
                     var jsondata = JSON.parse(data);
                     vip_id=jsondata.vip_id;
-                    alert(vip_id);
+                    $.ajax({
+
+                        url : "dosession",
+                        type : "get",
+                        data : {"vip_tel":vip_tel},
+                        datatype:"json",
+                        contentType:"application/json;charset=UTF-8",
+                        success : function(data) {
+                        }
+
+                    });
                 }
 
             });
-            $.ajax({
 
-                url : "dosession",
-                type : "get",
-                data : {"vip_tel":vip_tel},
-                datatype:"json",
-                contentType:"application/json;charset=UTF-8",
-                success : function(data) {
-                    alert("success");
-                }
-
-            });
 
             if(status==1) {
-                alert("welcome");
 
                 window.location.href="recharge.jsp";
             }
