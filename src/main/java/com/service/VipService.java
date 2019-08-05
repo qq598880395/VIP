@@ -86,8 +86,9 @@ public class VipService {
         String vip_name = vip.getVip_name();
         vip_money=vip_money+rc_cost;
         int hotel_id=vip.getHotel_id();
+        String vip_tel=vip.getVip_tel();
         vipDAO.updateVip_money(vip_id,vip_money);
-        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name);
+        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name,vip_tel);
         return x;
     }
     public Vip findByVip_tel(String vip_tel){
