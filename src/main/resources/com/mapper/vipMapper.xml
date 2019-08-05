@@ -24,12 +24,12 @@
 
      <insert id="addVipBytel" >
          insert into vip_list(vip_id,vip_tel,vip_name,vip_money,hotel_id,hotel_name)
-          values(#{vip_id},#{tel},#{tel},0,1001,woolls)
+          values(#{vip_id},#{tel},#{tel},0,1001,'woolls')
      </insert>
 
     <insert id="addVipByopenid" >
          insert into vip_list(vip_id,openid,vip_name,vip_money,hotel_id,hotel_name)
-          values(#{vip_id},#{openid},'尊贵的会员',0,1001,woolls)
+          values(#{vip_id},#{openid},'尊贵的会员',0,1001,'woolls')
      </insert>
 
     <update id="updateVipmsg" >
