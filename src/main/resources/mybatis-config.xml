@@ -23,6 +23,7 @@
 	    <mapper resource="com/mapper/vipMapper.xml"/>
 		<mapper resource="com/mapper/rcMapper.xml"/>
 		<mapper resource="com/mapper/rechargeMapper.xml"/>
+		<mapper resource="com/mapper/vip_levelMapper.xml"/>
 	</mappers>
 
 

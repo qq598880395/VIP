@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.pojo.Rc_case;
 import com.pojo.Recharge;
 import com.pojo.Vip;
+import com.pojo.Vip_level;
 import com.service.VipService;
 import com.util.Page;
 import com.util.ResultMap;
@@ -106,7 +107,7 @@ public class VipAction {
     @RequestMapping("/sendCode")
     public  String sendCode (String vip_tel) throws  ClientException{
         String code = TelMsgLogin.Setcode(vip_tel);
-        int count = service.countBytel(vip_tel);
+        int count = service.countBytel(vip_tel,1001);
         int status;
         JSONObject json =new JSONObject();
         if(count==0)
@@ -138,7 +139,7 @@ public class VipAction {
             service.addVip(vip_id,vip_tel);
         }
 
-        Vip vip = service.findByVip_tel(vip_tel);
+        Vip vip = service.findByVip_tel(vip_tel,1001);
         String vip_id = vip.getVip_id();
         json.put("vip_id",vip_id);
         json.put("vip_name",vip.getVip_name());
@@ -164,7 +165,7 @@ public class VipAction {
         System.out.println();
         System.out.println();
         System.out.println(vip_tel);
-        Vip vip = service.findByVip_tel(vip_tel);
+        Vip vip = service.findByVip_tel(vip_tel,1001);
 //        vip.setVip_money(2.2);
         PrintWriter out = response.getWriter();//测试用 printWriter可用来创建一个文件并向文本文件写入数据。可以理解为java中的文件输出
         //转GSON
@@ -215,6 +216,15 @@ public class VipAction {
         return json;
     }
     @ResponseBody
+    @RequestMapping("/findlevelMsg")
+    public String findlevelMsg(int level_id){
+        Vip_level level = service.findlevelMsg(level_id);
+        String json= JSONObject.toJSONString(level);
+//        System.out.println(json);
+
+        return json;
+    }
+    @ResponseBody
     @RequestMapping("/getRc")
     public String getRc(int rc_caseid){
         Rc_case rc_case = service.getRc(rc_caseid);
@@ -225,9 +235,29 @@ public class VipAction {
 
     @ResponseBody
     @RequestMapping("/recharge")
-    public int recharge(String vip_id , double rc_cost ){
+    public int recharge(String vip_id , double rc_cost ,double level_num){
         System.out.println(rc_cost);
         Rc_case rc_case = service.getRc(1);
+        int level_id=1 ;
+        double sum = rc_cost+level_num;
+        if(sum>=200){
+            level_id=2;
+        }
+        if(sum>=800){
+            level_id=3;
+        }
+        if(sum>=2000){
+            level_id=4;
+        }
+        if(sum>=5000){
+            level_id=5;
+        }
+        if(sum>=12000){
+            level_id=6;
+        }
+        if(sum>=50000){
+            level_id=7;
+        }
 
         double rc_num1=0;//最终结果
         int rc_a=0,rc_b=0,rc_c=0,rc_a_regiv,rc_b_regiv,rc_c_regiv ,num,n,m;//num 存优惠方案  m存翻倍值 n中间数
@@ -372,14 +402,14 @@ public class VipAction {
         }
         String rc_id = UUIDTool.getUUID();
         System.out.println(rc_num1);
-        int x = service.recharge(vip_id,rc_num1,rc_id);
+        int x = service.recharge(vip_id,rc_num1,rc_id,rc_cost,level_id,sum);
         return x;
 
     }
     @ResponseBody
     @RequestMapping("/findbytel")
     public int findbytel(String vip_tel){
-        int x = service.countBytel(vip_tel);
+        int x = service.countBytel(vip_tel,1001);
         return x;
 
     }

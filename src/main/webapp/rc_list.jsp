@@ -77,7 +77,8 @@
                     { field: 'vip_tel', title: '电话', width: 130, sort: true },
                     { field: 'vip_name', title: '用户名', width: 100 , sort: true },
                     { field: 'hotel_id', title: '酒店ID', width: 80, sort: true },
-                    { field: 'rc_cost', title: '充值金额加赠送金额', width: 110},
+                    { field: 'rc_cost_1st', title: '实际充值', width: 110},
+                    { field: 'rc_cost', title: '总计', width: 110},
                     { field: 'rc_time', title: '下单时间', width: 130, sort: true },
                 ]
             ],

@@ -21,8 +21,26 @@ public class Vip implements Serializable {
     private String vip_time;//会员加入时间
     private String hotel_name;//酒店名
     private  int hotel_id;//酒店id
+    private int level_id;//积分等级ID
+    private double level_num;//积分数
     public String getVip_time() {
         return vip_time;
+    }
+
+    public int getLevel_id() {
+        return level_id;
+    }
+
+    public void setLevel_id(int level_id) {
+        this.level_id = level_id;
+    }
+
+    public double getLevel_num() {
+        return level_num;
+    }
+
+    public void setLevel_num(double level_num) {
+        this.level_num = level_num;
     }
 
     public void setVip_time(String vip_time) {

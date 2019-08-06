@@ -12,7 +12,7 @@
     <title>会员表格</title>
 </head>
 <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css"/>
-<body>
+<body style="position: relative">
 <br>
 <div class="demoTable" style="margin-left: 20px">
     搜索：
@@ -33,14 +33,32 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="rc" id="btn_recharge" >充值</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="btn_delete" >删除</a>
 </script>
+<div id="recharge" style="width:100%;display: none;position: absolute;bottom: 55%;left: 30%" class="layui-container">
+    <div class="layui-row" >
+        <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
+        <div class="layui-col-md4 layui-col-xs8" style="height: 30%; border: #F8F8F8 2px solid;background-color: #F8F8F8">
+            <div style="width: 100%;height: 30px;text-align: center; border-bottom: #c0c4cc 2px solid;font-size: 20px;">充值</div>
+            <br>
+            <input type="text" name="title" required lay-verify="required" placeholder="请输入充值金额" autocomplete="off" class="layui-input"id = "rc_cost">
+
+            <br><div  id="rcfont" style="margin-left: 20px;display:none;">*现在有优惠，多充多送喔！</div>
+            <br>
+
+            <button id="rc_sure"  type="button"  class="layui-btn layui-btn-normal" style="margin-left: 40%;">确定</button>
+            <a id="rc_close"  href=" " type="button"  class="layui-btn layui-btn-normal" >关闭</a></div>
+
+        <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
+    </div>
+</div>
 
 </body>
 <script src="js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-
+    var rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,vip_id;
     layui.use('table', function() {
         var table = layui.table;//表格
 
@@ -83,6 +101,7 @@
                     { field: 'hotel_id', title: '酒店ID', width: 80, sort: true },
                     { field: 'hotel_name', title: '酒店名称', width: 100, sort: true },
                     { field: 'vip_money', title: '余额', width: 80, sort: true },
+                    { field: 'level_num', title: '积分', width: 80, sort: true },
                     { field: 'vip_time', title: '加入时间', width: 130, sort: true },
                     { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' }
                 ]
@@ -123,7 +142,7 @@
                 layEvent = obj.event; //获得 lay-event 对应的值
            // var jsondata=JSON.stringify(data);
             var jsondata = JSON.parse(JSON.stringify(data));
-
+                vip_id=jsondata.vip_id;
             if(layEvent === 'del') {
                 if(jsondata.vip_money>=1)
                 {
@@ -162,6 +181,34 @@
         } else if(layEvent === 'edit') {
             layer.msg('没有权限，只允许用户本人修改');
         }
+            else if(layEvent === 'rc') {
+                var rcfont = document.getElementById("rcfont");
+                var recharge = document.getElementById("recharge");
+                var rc_caseid = 1;
+                recharge.style.display="block";
+
+                $.ajax({
+                    url : "getRc",
+                    type : "get",
+                    data : {"rc_caseid":rc_caseid},
+                    datatype:"json",
+                    contentType:"application/json;charset=UTF-8",
+                    success : function(data) {
+                        var jsondata = JSON.parse(data);
+                        rc_a=jsondata.rc_a;
+                        rc_b=jsondata.rc_b;
+                        rc_c=jsondata.rc_c;
+                        rc_a_regiv=jsondata.rc_a_regiv;
+                        rc_b_regiv=jsondata.rc_b_regiv;
+                        rc_c_regiv=jsondata.rc_c_regiv;
+                        if(jsondata.rc_a!=0||jsondata.rc_b!=0||jsondata.rc_c!=0){
+                            rcfont.style.display="block";
+                        }
+                    }
+                });
+
+
+            }
     });
         var $ = layui.jquery, active = {
 
@@ -184,7 +231,31 @@
         });
 
     });
+    $("#rc_sure").click(function() {
+        var rc_cost=$("#rc_cost").val();
 
+
+        $.ajax({
+            url : "recharge",
+            type : "get",
+            data : {"vip_id":vip_id,"rc_cost":rc_cost},
+            datatype:"json",
+            contentType:"application/json;charset=UTF-8",
+            success : function(data) {
+                if(data==1)
+                {
+                    alert("充值成功");
+                    location.reload();
+                }
+                else{
+                    alert("充值失败");
+                }
+            }
+        });
+
+
+
+    });
 
 </script>
 

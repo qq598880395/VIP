@@ -45,6 +45,10 @@
                  console.log(data);
                  alert(data);
                  vip_id = data.vip_id;
+                 if(vip_id==null){
+                     alert("请先登录");
+                     window.location.href="login.jsp";
+                 }
                  vip_tel = data.vip_tel;
                  vip_openid = data.vip_openid;
                  hotel_id=data.hotel_id;

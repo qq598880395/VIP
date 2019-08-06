@@ -16,6 +16,15 @@ public class Recharge implements Serializable {
     private String rc_time;//订单时间
     private String vip_name;//会员姓名
     private String vip_tel;//会员电话
+    private double rc_cost_1st;//实际支付金额
+
+    public double getRc_cost_1st() {
+        return rc_cost_1st;
+    }
+
+    public void setRc_cost_1st(double rc_cost_1st) {
+        this.rc_cost_1st = rc_cost_1st;
+    }
 
     public String getVip_name() {
         return vip_name;

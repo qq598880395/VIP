@@ -6,20 +6,20 @@
 <mapper namespace="com.dao.VipDAO">
 
     <select id="findbyVip_name" parameterType="String" resultType="com.pojo.Vip">
-         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name,level_id,level_num
          from  vip_list
          where vip_name=#{vip_name}
      </select>
 
      <select id="findbyVip_id" parameterType="String" resultType="com.pojo.Vip">
-         select vip_id,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name,level_id,level_num
          from  vip_list
          where vip_id=#{vip_id}
      </select>
-     <select id="findbyVip_tel" parameterType="String" resultType="com.pojo.Vip">
-         select vip_id,openid,vip_tel,vip_name,vip_IDcard,hotel_id,vip_money
+     <select id="findbyVip_tel"  resultType="com.pojo.Vip">
+         select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name,level_id,level_num
          from  vip_list
-         where vip_tel=#{vip_tel}
+         where vip_tel=#{vip_tel} and hotel_id=#{hotel_id}
      </select>
 
      <insert id="addVipBytel" >
@@ -39,7 +39,7 @@
 
 
     <select id="findAll"  resultType="com.pojo.Vip">
-        select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name
+        select vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name,level_id,level_num
         from vip_list
 
     </select>
@@ -58,20 +58,20 @@
         where vip_id=#{vip_id}
     </select>
 
-    <select id="countByVip_tel" parameterType="String" resultType="int">
+    <select id="countByVip_tel" resultType="int">
         SELECT COUNT(*) from vip_list
-        where vip_tel=#{vip_tel}
+        where vip_tel=#{vip_tel} and hotel_id=#{hotel_id}
     </select>
 
     <update id="updateVip_money" >
-         update vip_list set vip_money=#{vip_money}
+         update vip_list set vip_money=#{vip_money},level_id=#{level_id},level_num=#{level_num}
           where vip_id=#{vip_id}
      </update>
 
     <!-- 通过条件分页查询，返回数据集 -->
     <select id="selectPageList" parameterType="com.util.Page" resultType="com.pojo.Vip">
         select
-        vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name
+        vip_id,openid,vip_tel,vip_name,vip_IDcard,vip_money,vip_time,hotel_id,hotel_name,level_num
         from vip_list
         <where>
             <if test="keyWord!='' and keyType=='vip_tel' ">

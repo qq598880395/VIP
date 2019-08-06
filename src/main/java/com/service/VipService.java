@@ -9,9 +9,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dao.Rc_caseDAO;
 import com.dao.RechargeDAO;
 import com.dao.VipDAO;
+import com.dao.Vip_levelDAO;
 import com.pojo.Rc_case;
 import com.pojo.Recharge;
 import com.pojo.Vip;
+import com.pojo.Vip_level;
 import javafx.scene.control.Alert;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class VipService {
     private Rc_caseDAO rc_caseDAO;
     @Autowired
     private RechargeDAO rechargeDAO;
+    @Autowired
+    private Vip_levelDAO vip_levelDAO;
 
     public String getVip(){
         List list = vipDAO.findAll();
@@ -61,8 +65,8 @@ public class VipService {
         int x = vipDAO.countByVip_id(vip_id);
         return  x;
     }
-    public int countBytel(String vip_tel){
-        int x = vipDAO.countByVip_tel(vip_tel);
+    public int countBytel(String vip_tel,int hotel_id){
+        int x = vipDAO.countByVip_tel(vip_tel,1001);
         return  x;
     }
     public int rcCase(int rc_a,int rc_b,int rc_c,int rc_a_regiv,int rc_b_regiv,int rc_c_regiv,int rc_caseid){
@@ -73,6 +77,10 @@ public class VipService {
         Vip vip = vipDAO.findbyVip_id(vip_id);
         return vip;
     }
+    public Vip_level findlevelMsg(int level_id){
+        Vip_level vip_level = vip_levelDAO.findbylevel_id(level_id);
+        return vip_level;
+    }
     public Rc_case getRc(int rc_caseid) {
         Rc_case rc_case = rc_caseDAO.findbyRc_id(rc_caseid);
 //        String jsonString = JSONObject.toJSONString(rc_case);
@@ -80,19 +88,19 @@ public class VipService {
         return rc_case;
     }
 
-    public int recharge(String vip_id,double rc_cost,String rc_id){
+    public int recharge(String vip_id,double rc_cost,String rc_id,double rc_cost_1st,int level_id,double level_num ){
         Vip vip =vipDAO.findbyVip_id(vip_id);
         double vip_money = vip.getVip_money();
         String vip_name = vip.getVip_name();
         vip_money=vip_money+rc_cost;
         int hotel_id=vip.getHotel_id();
         String vip_tel=vip.getVip_tel();
-        vipDAO.updateVip_money(vip_id,vip_money);
-        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name,vip_tel);
+        vipDAO.updateVip_money(vip_id,vip_money,level_id,level_num);
+        int x=rechargeDAO.addOrder(vip_id,rc_id,rc_cost,hotel_id,vip_name,vip_tel,rc_cost_1st);
         return x;
     }
-    public Vip findByVip_tel(String vip_tel){
-        Vip vip = vipDAO.findbyVip_tel(vip_tel);
+    public Vip findByVip_tel(String vip_tel,int hotel_id){
+        Vip vip = vipDAO.findbyVip_tel(vip_tel,hotel_id);
         return vip;
     }
 
