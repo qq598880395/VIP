@@ -246,6 +246,7 @@
                 if(data==1)
                 {
                     alert("充值成功");
+
                     location.reload();
                 }
                 else{
