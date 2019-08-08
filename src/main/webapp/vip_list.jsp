@@ -58,7 +58,7 @@
 <script src="js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    var rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,vip_id;
+    var rc_a,rc_b,rc_c,rc_a_regiv,rc_b_regiv,rc_c_regiv,vip_id,level_num;
     layui.use('table', function() {
         var table = layui.table;//表格
 
@@ -143,6 +143,7 @@
            // var jsondata=JSON.stringify(data);
             var jsondata = JSON.parse(JSON.stringify(data));
                 vip_id=jsondata.vip_id;
+                level_num=jsondata.level_num;
             if(layEvent === 'del') {
                 if(jsondata.vip_money>=1)
                 {
@@ -238,7 +239,7 @@
         $.ajax({
             url : "recharge",
             type : "get",
-            data : {"vip_id":vip_id,"rc_cost":rc_cost},
+            data : {"vip_id":vip_id,"rc_cost":rc_cost,"level_num":level_num},
             datatype:"json",
             contentType:"application/json;charset=UTF-8",
             success : function(data) {
