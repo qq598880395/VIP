@@ -33,7 +33,7 @@
 <a href="background.jsp" class="layui-btn">Hello World!</a>
 <a href="rcCase.jsp" class="layui-btn">rccase</a>
 <a href="updateVipMsg.jsp" class="layui-btn">update</a>
-
+<%--弹出层--%>
 <div id="recharge" style="width:100%;display: none;" class="layui-container">
     <div class="layui-row" >
         <div class="layui-col-md4 layui-col-xs2" style="height: 30%;"></div>
@@ -41,7 +41,7 @@
             <div style="width: 100%;height: 30px;text-align: center; border-bottom: #c0c4cc 2px solid;font-size: 20px;">充值</div>
             <br>
             <input type="text" name="title" required lay-verify="required" placeholder="请输入充值金额" autocomplete="off" class="layui-input"id = "rc_cost">
-
+            <%--//有优惠就显示没有就隐藏--%>
             <br><div  id="rcfont" style="margin-left: 20px;display:none;">*现在有优惠，多充多送喔！</div>
             <br>
 

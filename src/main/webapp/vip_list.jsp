@@ -68,7 +68,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo',
-            height: 650,
+            height: 580,
             url: 'findallvip',//数据接口
             title: '用户表',
             toolbar: '' ,//开启工具栏，此处显示默认图标，可以自定义模板，详见文档,
@@ -103,7 +103,7 @@
                     { field: 'vip_money', title: '余额', width: 80, sort: true },
                     { field: 'level_num', title: '积分', width: 80, sort: true },
                     { field: 'vip_time', title: '加入时间', width: 130, sort: true },
-                    { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' }
+                    { fixed: 'right', width: 180, align: 'center', toolbar: '#barDemo' }
                 ]
             ],
             page: true //开启分页
